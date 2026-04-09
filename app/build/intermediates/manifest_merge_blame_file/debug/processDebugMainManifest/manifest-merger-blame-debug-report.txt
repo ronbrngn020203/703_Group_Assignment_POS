@@ -1,0 +1,274 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.ais.cafeteria.pos"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:4:5-67
+11-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:4:22-64
+12    <uses-permission android:name="android.permission.CALL_PHONE" />
+12-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:5:5-69
+12-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:5:22-66
+13    <uses-permission android:name="android.permission.SEND_SMS" />
+13-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:6:5-67
+13-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:6:22-64
+14    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+14-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:7:5-79
+14-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:7:22-76
+15    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+15-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:8:5-81
+15-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:8:22-78
+16
+17    <!-- Include required permissions for Google Maps API to run. -->
+18    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+18-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\ronni\.gradle\caches\transforms-4\6f7d4049b22d6091af7ecc58be2caebd\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
+18-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\ronni\.gradle\caches\transforms-4\6f7d4049b22d6091af7ecc58be2caebd\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:22-76
+19
+20    <uses-feature
+20-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\ronni\.gradle\caches\transforms-4\6f7d4049b22d6091af7ecc58be2caebd\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:26:5-28:35
+21        android:glEsVersion="0x00020000"
+21-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\ronni\.gradle\caches\transforms-4\6f7d4049b22d6091af7ecc58be2caebd\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:27:9-41
+22        android:required="true" />
+22-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\ronni\.gradle\caches\transforms-4\6f7d4049b22d6091af7ecc58be2caebd\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:28:9-32
+23
+24    <queries>
+24-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\ronni\.gradle\caches\transforms-4\6f7d4049b22d6091af7ecc58be2caebd\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15
+25
+26        <!-- Needs to be explicitly declared on Android R+ -->
+27        <package android:name="com.google.android.apps.maps" />
+27-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\ronni\.gradle\caches\transforms-4\6f7d4049b22d6091af7ecc58be2caebd\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:33:9-64
+27-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\ronni\.gradle\caches\transforms-4\6f7d4049b22d6091af7ecc58be2caebd\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:33:18-61
+28    </queries>
+29
+30    <permission
+30-->[androidx.core:core:1.12.0] C:\Users\ronni\.gradle\caches\transforms-4\29c9f7fd79e9f7b4083258d3e9a5128f\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+31        android:name="com.ais.cafeteria.pos.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+31-->[androidx.core:core:1.12.0] C:\Users\ronni\.gradle\caches\transforms-4\29c9f7fd79e9f7b4083258d3e9a5128f\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+32        android:protectionLevel="signature" />
+32-->[androidx.core:core:1.12.0] C:\Users\ronni\.gradle\caches\transforms-4\29c9f7fd79e9f7b4083258d3e9a5128f\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+33
+34    <uses-permission android:name="com.ais.cafeteria.pos.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+34-->[androidx.core:core:1.12.0] C:\Users\ronni\.gradle\caches\transforms-4\29c9f7fd79e9f7b4083258d3e9a5128f\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+34-->[androidx.core:core:1.12.0] C:\Users\ronni\.gradle\caches\transforms-4\29c9f7fd79e9f7b4083258d3e9a5128f\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+35
+36    <application
+36-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:10:5-81:19
+37        android:allowBackup="true"
+37-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:11:9-35
+38        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+38-->[androidx.core:core:1.12.0] C:\Users\ronni\.gradle\caches\transforms-4\29c9f7fd79e9f7b4083258d3e9a5128f\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+39        android:debuggable="true"
+40        android:extractNativeLibs="false"
+41        android:icon="@mipmap/ic_launcher"
+41-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:12:9-43
+42        android:label="@string/app_name"
+42-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:13:9-41
+43        android:roundIcon="@mipmap/ic_launcher_round"
+43-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:14:9-54
+44        android:supportsRtl="true"
+44-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:15:9-35
+45        android:testOnly="true"
+46        android:theme="@style/Theme.AISCafeteria" >
+46-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:16:9-50
+47
+48        <!-- Splash Screen -->
+49        <activity
+49-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:19:9-27:20
+50            android:name="com.ais.cafeteria.pos.activities.SplashActivity"
+50-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:20:13-54
+51            android:exported="true"
+51-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:21:13-36
+52            android:theme="@style/Theme.AISCafeteria.Splash" >
+52-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:22:13-61
+53            <intent-filter>
+53-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:23:13-26:29
+54                <action android:name="android.intent.action.MAIN" />
+54-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:24:17-69
+54-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:24:25-66
+55
+56                <category android:name="android.intent.category.LAUNCHER" />
+56-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:25:17-77
+56-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:25:27-74
+57            </intent-filter>
+58        </activity>
+59
+60        <!-- Login Activity -->
+61        <activity
+61-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:30:9-32:40
+62            android:name="com.ais.cafeteria.pos.activities.LoginActivity"
+62-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:31:13-53
+63            android:exported="false" />
+63-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:32:13-37
+64
+65        <!-- Main / Dashboard Activity -->
+66        <activity
+66-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:35:9-37:40
+67            android:name="com.ais.cafeteria.pos.activities.MainActivity"
+67-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:36:13-52
+68            android:exported="false" />
+68-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:37:13-37
+69
+70        <!-- Menu Activity -->
+71        <activity
+71-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:40:9-42:40
+72            android:name="com.ais.cafeteria.pos.activities.MenuActivity"
+72-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:41:13-52
+73            android:exported="false" />
+73-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:42:13-37
+74        <activity android:name="com.ais.cafeteria.pos.activities.FindUsActivity" />
+74-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:44:9-63
+74-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:44:19-60
+75
+76        <!-- Cart Activity -->
+77        <activity
+77-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:47:9-49:40
+78            android:name="com.ais.cafeteria.pos.activities.CartActivity"
+78-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:48:13-52
+79            android:exported="false" />
+79-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:49:13-37
+80
+81        <!-- Payment Activity -->
+82        <activity
+82-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:52:9-54:40
+83            android:name="com.ais.cafeteria.pos.activities.PaymentActivity"
+83-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:53:13-55
+84            android:exported="false" />
+84-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:54:13-37
+85
+86        <!-- Receipt Activity -->
+87        <activity
+87-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:57:9-59:40
+88            android:name="com.ais.cafeteria.pos.activities.ReceiptActivity"
+88-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:58:13-55
+89            android:exported="false" />
+89-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:59:13-37
+90
+91        <!-- Order History Activity -->
+92        <activity
+92-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:62:9-64:40
+93            android:name="com.ais.cafeteria.pos.activities.OrderHistoryActivity"
+93-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:63:13-60
+94            android:exported="false" />
+94-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:64:13-37
+95
+96        <!-- Gallery Activity -->
+97        <activity
+97-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:67:9-69:40
+98            android:name="com.ais.cafeteria.pos.activities.GalleryActivity"
+98-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:68:13-55
+99            android:exported="false" />
+99-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:69:13-37
+100
+101        <!-- Contact/About Activity -->
+102        <activity
+102-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:72:9-74:40
+103            android:name="com.ais.cafeteria.pos.activities.ContactActivity"
+103-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:73:13-55
+104            android:exported="false" />
+104-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:74:13-37
+105
+106        <!-- Google Maps API Key -->
+107        <meta-data
+107-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:77:9-79:71
+108            android:name="com.google.android.geo.API_KEY"
+108-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:78:13-58
+109            android:value="AIzaSyDss-QkynmkqqCKH7pz3D6g8Py_7OLVuU0" />
+109-->C:\Users\ronni\Downloads\708 Assignment\708 Assignment\Final\AIS_POS_ASSIGNMENT\app\src\main\AndroidManifest.xml:79:13-68
+110
+111        <!-- Needs to be explicitly declared on P+ -->
+112        <uses-library
+112-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\ronni\.gradle\caches\transforms-4\6f7d4049b22d6091af7ecc58be2caebd\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:39:9-41:40
+113            android:name="org.apache.http.legacy"
+113-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\ronni\.gradle\caches\transforms-4\6f7d4049b22d6091af7ecc58be2caebd\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:40:13-50
+114            android:required="false" />
+114-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\ronni\.gradle\caches\transforms-4\6f7d4049b22d6091af7ecc58be2caebd\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:41:13-37
+115
+116        <provider
+116-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ronni\.gradle\caches\transforms-4\9456310b725003957977eb810fc4f042\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+117            android:name="androidx.startup.InitializationProvider"
+117-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ronni\.gradle\caches\transforms-4\9456310b725003957977eb810fc4f042\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+118            android:authorities="com.ais.cafeteria.pos.androidx-startup"
+118-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ronni\.gradle\caches\transforms-4\9456310b725003957977eb810fc4f042\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+119            android:exported="false" >
+119-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ronni\.gradle\caches\transforms-4\9456310b725003957977eb810fc4f042\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+120            <meta-data
+120-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ronni\.gradle\caches\transforms-4\9456310b725003957977eb810fc4f042\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+121                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+121-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ronni\.gradle\caches\transforms-4\9456310b725003957977eb810fc4f042\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+122                android:value="androidx.startup" />
+122-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ronni\.gradle\caches\transforms-4\9456310b725003957977eb810fc4f042\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+123            <meta-data
+123-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\ronni\.gradle\caches\transforms-4\b83f9281fe23a3f88ecb4f0d5d4c7a69\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+124                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+124-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\ronni\.gradle\caches\transforms-4\b83f9281fe23a3f88ecb4f0d5d4c7a69\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+125                android:value="androidx.startup" />
+125-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\ronni\.gradle\caches\transforms-4\b83f9281fe23a3f88ecb4f0d5d4c7a69\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+126            <meta-data
+126-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+127                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+127-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+128                android:value="androidx.startup" />
+128-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+129        </provider>
+130
+131        <activity
+131-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\ronni\.gradle\caches\transforms-4\57c52b21f94d3444c0d301c8864e4aee\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+132            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+132-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\ronni\.gradle\caches\transforms-4\57c52b21f94d3444c0d301c8864e4aee\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+133            android:exported="false"
+133-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\ronni\.gradle\caches\transforms-4\57c52b21f94d3444c0d301c8864e4aee\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+134            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+134-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\ronni\.gradle\caches\transforms-4\57c52b21f94d3444c0d301c8864e4aee\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+135
+136        <meta-data
+136-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\ronni\.gradle\caches\transforms-4\fed22ca3c5183f95a570ce6470068d4b\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+137            android:name="com.google.android.gms.version"
+137-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\ronni\.gradle\caches\transforms-4\fed22ca3c5183f95a570ce6470068d4b\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+138            android:value="@integer/google_play_services_version" />
+138-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\ronni\.gradle\caches\transforms-4\fed22ca3c5183f95a570ce6470068d4b\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+139
+140        <receiver
+140-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+141            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+141-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+142            android:directBootAware="false"
+142-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+143            android:enabled="true"
+143-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+144            android:exported="true"
+144-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+145            android:permission="android.permission.DUMP" >
+145-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+146            <intent-filter>
+146-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+147                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+147-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+147-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+148            </intent-filter>
+149            <intent-filter>
+149-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+150                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+150-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+150-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+151            </intent-filter>
+152            <intent-filter>
+152-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+153                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+153-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+153-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+154            </intent-filter>
+155            <intent-filter>
+155-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+156                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+156-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+156-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\ronni\.gradle\caches\transforms-4\e5672e815fbd5a92b668bd3f496f1182\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+157            </intent-filter>
+158        </receiver>
+159    </application>
+160
+161</manifest>

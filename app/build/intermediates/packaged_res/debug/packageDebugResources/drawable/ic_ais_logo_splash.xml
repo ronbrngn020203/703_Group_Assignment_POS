@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Outer circle ring -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:fillColor="#00000000"
+        android:pathData="M50,8 A42,42 0 1,1 49.9,8 Z"/>
+
+    <!-- Graduation cap -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,22 L72,32 L50,42 L28,32 Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M36,38 L36,52 Q50,58 64,52 L64,38 L50,44 Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M70,32 L70,46 M68,44 L72,44 L72,48 L68,48 Z"/>
+
+    <!-- AIS text -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,68 L24,78 M24,68 L30,68 L30,72 L24,72 M24,78 L30,78"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M34,68 L40,78 L46,68"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,68 L50,78"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M54,70 Q58,67 62,70 Q66,73 62,76 Q58,79 62,82"/>
+
+</vector>

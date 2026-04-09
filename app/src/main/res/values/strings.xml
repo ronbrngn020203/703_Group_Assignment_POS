@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AIS Cafeteria</string>
+    <string name="app_tagline">Auckland Institute of Studies</string>
+
+    <!-- Login -->
+    <string name="login_title">Staff Login</string>
+    <string name="staff_id_hint">Staff ID</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Sign In</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forgot_password">Forgot password? Contact IT Support</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">AIS Cafeteria</string>
+    <string name="good_morning">Good Morning, Guest!</string>
+    <string name="cafeteria_open">OPEN · Closes 4:00 PM</string>
+    <string name="chefs_pick">Chef\'s Pick</string>
+    <string name="order_now">Order Now</string>
+    <string name="quick_actions">Quick Actions</string>
+    <string name="view_menu">View Menu</string>
+    <string name="view_cart">View Cart</string>
+    <string name="gallery">Gallery</string>
+    <string name="find_us">Find Us</string>
+    <string name="contact">Contact</string>
+    <string name="order_history">Order History</string>
+    <string name="tap_to_open">Tap to open →</string>
+
+    <!-- Menu -->
+    <string name="menu_title">Menu</string>
+    <string name="search_menu">Search menu…</string>
+    <string name="add_to_cart">Add</string>
+    <string name="all_categories">All</string>
+
+    <!-- Cart -->
+    <string name="cart_title">Your Cart</string>
+    <string name="cart_empty">Your cart is empty</string>
+    <string name="browse_menu">Browse Menu</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="gst">GST (15%)</string>
+    <string name="total">Total</string>
+    <string name="proceed_payment">Proceed to Payment</string>
+    <string name="order_note_hint">Any special requests…</string>
+
+    <!-- Payment -->
+    <string name="payment_title">Payment</string>
+    <string name="select_payment">Select Payment Method</string>
+    <string name="pay_card">Credit / Debit Card</string>
+    <string name="pay_cash">Cash</string>
+    <string name="pay_wallet">Digital Wallet</string>
+    <string name="amount_due">AMOUNT DUE</string>
+    <string name="confirm_payment">Confirm Payment</string>
+    <string name="card_number_hint">Card Number</string>
+    <string name="expiry_hint">MM/YY</string>
+    <string name="cvv_hint">CVV</string>
+
+    <!-- Receipt -->
+    <string name="receipt_title">Order Confirmed!</string>
+    <string name="email_receipt">Email Receipt</string>
+    <string name="print_receipt">Print</string>
+    <string name="new_order">+ New Order</string>
+    <string name="order_details">Order Details</string>
+    <string name="total_paid">Total Paid</string>
+
+    <!-- History -->
+    <string name="history_title">Order History</string>
+    <string name="search_orders">Search orders…</string>
+    <string name="view_details">View Details</string>
+    <string name="status_completed">Completed</string>
+
+    <!-- Gallery -->
+    <string name="gallery_title">Gallery</string>
+    <string name="gallery_subtitle">AIS Cafeteria — Auckland</string>
+
+    <!-- Contact -->
+    <string name="contact_title">About &amp; Contact</string>
+    <string name="ais_phone">+64 9 815 3589</string>
+    <string name="ais_email">cafeteria@ais.ac.nz</string>
+    <string name="ais_website">www.ais.ac.nz</string>
+    <string name="ais_address">28A Linwood Avenue, Mount Albert, Auckland 1025</string>
+    <string name="dial">Dial</string>
+    <string name="email">Email</string>
+    <string name="open_web">Open</string>
+    <string name="opening_hours">Opening Hours</string>
+    <string name="hours_weekday">Mon – Fri: 7:30 AM – 4:00 PM</string>
+    <string name="hours_saturday">Saturday: 8:00 AM – 2:00 PM</string>
+    <string name="hours_sunday">Sunday: Closed</string>
+    <string name="open_in_maps">Open in Maps</string>
+
+    <!-- Misc -->
+    <string name="incl_gst">incl. 15% GST</string>
+    <string name="app_version">AIS Cafeteria POS v1.0 · SOFT708</string>
+</resources>
