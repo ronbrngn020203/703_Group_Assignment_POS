@@ -1,20 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.ais.cafeteria.pos.app-mergeDebugResources-34:/values-v16/values-v16.xml",
+            "outputFile": "com.ais.cafeteria.pos.app-mergeDebugResources-36:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ronni\\.gradle\\caches\\transforms-4\\29c9f7fd79e9f7b4083258d3e9a5128f\\transformed\\core-1.12.0\\res\\values-v16\\values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\ronni\\.gradle\\caches\\transforms-4\\1d382a970569d6f4eddada36cac67b49\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\admin\\.gradle\\caches\\transforms-4\\a890844a47eaafceac9fe1a9cd86e83e\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -30,6 +20,16 @@
                         "endLines": "6",
                         "endColumns": "12",
                         "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\admin\\.gradle\\caches\\transforms-4\\2d2df418280576f6501a4b6ceaa3f93f\\transformed\\core-1.12.0\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
                     }
                 }
             ]

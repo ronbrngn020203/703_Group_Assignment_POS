@@ -18,16 +18,30 @@ import java.util.Locale;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
 
+    // ── Interfaces ────────────────────────────────────────────
     public interface OnAddToCartListener {
         void onAddToCart(MenuItem item);
     }
 
+    /** NEW: Long-press a menu card to open the edit screen */
+    public interface OnItemLongClickListener {
+        void onLongClick(MenuItem item);
+    }
+
+    // ── Fields ────────────────────────────────────────────────
     private List<MenuItem> menuItems;
     private final OnAddToCartListener listener;
+    private OnItemLongClickListener longClickListener; // NEW
 
+    // ── Constructor ───────────────────────────────────────────
     public MenuAdapter(List<MenuItem> menuItems, OnAddToCartListener listener) {
         this.menuItems = menuItems;
-        this.listener = listener;
+        this.listener  = listener;
+    }
+
+    /** NEW: Set this from MenuActivity to enable long-press editing */
+    public void setOnItemLongClickListener(OnItemLongClickListener listener) {
+        this.longClickListener = listener;
     }
 
     public void updateItems(List<MenuItem> newItems) {
@@ -45,8 +59,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MenuViewHolder holder, int position) {
-        MenuItem item = menuItems.get(position);
-        holder.bind(item);
+        holder.bind(menuItems.get(position));
     }
 
     @Override
@@ -54,18 +67,19 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         return menuItems != null ? menuItems.size() : 0;
     }
 
+    // ── ViewHolder ────────────────────────────────────────────
     class MenuViewHolder extends RecyclerView.ViewHolder {
         TextView tvEmoji, tvName, tvDesc, tvPrice, tvInCart;
-        Button btnAdd;
+        Button   btnAdd;
 
         MenuViewHolder(View itemView) {
             super(itemView);
-            tvEmoji = itemView.findViewById(R.id.tvEmoji);
-            tvName = itemView.findViewById(R.id.tvName);
-            tvDesc = itemView.findViewById(R.id.tvDesc);
-            tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvEmoji  = itemView.findViewById(R.id.tvEmoji);
+            tvName   = itemView.findViewById(R.id.tvName);
+            tvDesc   = itemView.findViewById(R.id.tvDesc);
+            tvPrice  = itemView.findViewById(R.id.tvPrice);
             tvInCart = itemView.findViewById(R.id.tvInCart);
-            btnAdd = itemView.findViewById(R.id.btnAdd);
+            btnAdd   = itemView.findViewById(R.id.btnAdd);
         }
 
         void bind(MenuItem item) {
@@ -74,7 +88,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
             tvDesc.setText(item.getDescription());
             tvPrice.setText(String.format(Locale.getDefault(), "$%.2f", item.getPrice()));
 
-            // Show "in cart" indicator if item is already in cart
             boolean inCart = CartManager.getInstance().isInCart(item.getId());
             if (inCart) {
                 int qty = CartManager.getInstance().getItemQtyInCart(item.getId());
@@ -90,11 +103,15 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                 notifyItemChanged(getAdapterPosition());
             });
 
-            // onLongClick — Show item details toast
+            // onLongClick — Open edit screen (NEW) or show toast as fallback
             itemView.setOnLongClickListener(v -> {
-                android.widget.Toast.makeText(v.getContext(),
-                        item.getName() + " — " + item.getDescription(),
-                        android.widget.Toast.LENGTH_SHORT).show();
+                if (longClickListener != null) {
+                    longClickListener.onLongClick(item);
+                } else {
+                    android.widget.Toast.makeText(v.getContext(),
+                            item.getName() + " — " + item.getDescription(),
+                            android.widget.Toast.LENGTH_SHORT).show();
+                }
                 return true;
             });
         }

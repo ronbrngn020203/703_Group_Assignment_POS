@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,15 +44,22 @@ public final class ActivityMenuBinding implements ViewBinding {
   public final EditText etSearch;
 
   @NonNull
+  public final ProgressBar progressBar;
+
+  @NonNull
   public final RecyclerView rvMenu;
 
   @NonNull
   public final TextView tvCartBadge;
 
+  @NonNull
+  public final TextView tvEmptyState;
+
   private ActivityMenuBinding(@NonNull LinearLayout rootView, @NonNull ImageView btnBack,
       @NonNull FrameLayout btnCart, @NonNull Button btnViewCart, @NonNull LinearLayout cartBar,
-      @NonNull LinearLayout categoryChips, @NonNull EditText etSearch, @NonNull RecyclerView rvMenu,
-      @NonNull TextView tvCartBadge) {
+      @NonNull LinearLayout categoryChips, @NonNull EditText etSearch,
+      @NonNull ProgressBar progressBar, @NonNull RecyclerView rvMenu, @NonNull TextView tvCartBadge,
+      @NonNull TextView tvEmptyState) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnCart = btnCart;
@@ -59,8 +67,10 @@ public final class ActivityMenuBinding implements ViewBinding {
     this.cartBar = cartBar;
     this.categoryChips = categoryChips;
     this.etSearch = etSearch;
+    this.progressBar = progressBar;
     this.rvMenu = rvMenu;
     this.tvCartBadge = tvCartBadge;
+    this.tvEmptyState = tvEmptyState;
   }
 
   @Override
@@ -126,6 +136,12 @@ public final class ActivityMenuBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
+        break missingId;
+      }
+
       id = R.id.rvMenu;
       RecyclerView rvMenu = ViewBindings.findChildViewById(rootView, id);
       if (rvMenu == null) {
@@ -138,8 +154,14 @@ public final class ActivityMenuBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvEmptyState;
+      TextView tvEmptyState = ViewBindings.findChildViewById(rootView, id);
+      if (tvEmptyState == null) {
+        break missingId;
+      }
+
       return new ActivityMenuBinding((LinearLayout) rootView, btnBack, btnCart, btnViewCart,
-          cartBar, categoryChips, etSearch, rvMenu, tvCartBadge);
+          cartBar, categoryChips, etSearch, progressBar, rvMenu, tvCartBadge, tvEmptyState);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
