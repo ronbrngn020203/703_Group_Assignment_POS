@@ -3318,6 +3318,7 @@ id btnOrderNow
 id btnPlus
 id btnPrint
 id btnRemove
+id btnSave
 id btnViewCart
 id btnViewDetails
 id btnViewMenu
@@ -3431,6 +3432,11 @@ id enterAlways
 id enterAlwaysCollapsed
 id etCardNumber
 id etCvv
+id etEditCategory
+id etEditDescription
+id etEditEmoji
+id etEditName
+id etEditPrice
 id etExpiry
 id etOrderNote
 id etPassword
@@ -3626,6 +3632,7 @@ id pooling_container_listener_holder_tag
 id position
 id postLayout
 id pressed
+id progressBar
 id progress_circular
 id progress_horizontal
 id radio
@@ -3766,7 +3773,9 @@ id tvDate
 id tvDesc
 id tvDrawerAvatar
 id tvDrawerName
+id tvEditTitle
 id tvEmoji
+id tvEmptyState
 id tvForgotPassword
 id tvGreeting
 id tvGst
@@ -3925,6 +3934,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_cart
 layout activity_contact
+layout activity_edit_menu_item
 layout activity_find_us
 layout activity_gallery
 layout activity_login
@@ -4022,6 +4032,7 @@ menu bottom_nav_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
+raw firebase_common_keep
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -4121,7 +4132,12 @@ string forgot_password
 string gallery
 string gallery_subtitle
 string gallery_title
+string gcm_defaultSenderId
 string good_morning
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
 string gst
 string hide_bottom_view_on_scroll_behavior
 string history_title
@@ -4254,6 +4270,7 @@ string pay_wallet
 string payment_title
 string print_receipt
 string proceed_payment
+string project_id
 string quick_actions
 string receipt_title
 string remember_me

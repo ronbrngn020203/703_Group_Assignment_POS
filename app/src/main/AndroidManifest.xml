@@ -13,6 +13,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AISCafeteria">
 
         <!-- Splash Screen -->
@@ -77,6 +78,11 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDss-QkynmkqqCKH7pz3D6g8Py_7OLVuU0" />
+
+        <!-- Edit Menu Item Activity-->
+        <activity
+            android:name=".activities.EditMenuItemActivity"
+            android:exported="false" />
 
     </application>
 

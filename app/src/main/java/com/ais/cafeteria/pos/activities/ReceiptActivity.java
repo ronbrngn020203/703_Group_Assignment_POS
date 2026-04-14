@@ -2,6 +2,7 @@ package com.ais.cafeteria.pos.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,11 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ais.cafeteria.pos.R;
 import com.ais.cafeteria.pos.adapters.ReceiptAdapter;
 import com.ais.cafeteria.pos.models.Order;
+import com.ais.cafeteria.pos.repository.OrderRepository;
 import com.ais.cafeteria.pos.utils.CartManager;
 
 import java.util.Locale;
 
 public class ReceiptActivity extends AppCompatActivity {
+
+    private static final String TAG = "ReceiptActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +34,26 @@ public class ReceiptActivity extends AppCompatActivity {
             return;
         }
 
-        // Populate receipt
-        TextView tvOrderId       = findViewById(R.id.tvOrderId);
-        TextView tvSubtotal      = findViewById(R.id.tvSubtotal);
-        TextView tvGst           = findViewById(R.id.tvGst);
-        TextView tvTotal         = findViewById(R.id.tvTotal);
-        TextView tvPayMethod     = findViewById(R.id.tvPayMethod);
+        // ── Save order to Firebase Realtime Database (NoSQL) ──
+        OrderRepository orderRepository = new OrderRepository();
+        orderRepository.saveOrder(order, new OrderRepository.OnOrderSavedCallback() {
+            @Override
+            public void onSuccess() {
+                Log.d(TAG, "✅ Order saved to Firebase: " + order.getOrderId());
+            }
+
+            @Override
+            public void onError(String message) {
+                Log.e(TAG, "❌ Failed to save order: " + message);
+            }
+        });
+
+        // ── Populate receipt UI ───────────────────────────────
+        TextView tvOrderId      = findViewById(R.id.tvOrderId);
+        TextView tvSubtotal     = findViewById(R.id.tvSubtotal);
+        TextView tvGst          = findViewById(R.id.tvGst);
+        TextView tvTotal        = findViewById(R.id.tvTotal);
+        TextView tvPayMethod    = findViewById(R.id.tvPayMethod);
         RecyclerView rvReceiptItems = findViewById(R.id.rvReceiptItems);
         TextView btnEmailReceipt = findViewById(R.id.btnEmailReceipt);
         TextView btnPrint        = findViewById(R.id.btnPrint);
@@ -52,21 +70,20 @@ public class ReceiptActivity extends AppCompatActivity {
         tvTotal.setText(String.format(Locale.getDefault(), "$%.2f", total));
         tvPayMethod.setText("Payment: " + order.getPaymentMethod());
 
-        // Receipt items
         ReceiptAdapter adapter = new ReceiptAdapter(order.getItems());
         rvReceiptItems.setLayoutManager(new LinearLayoutManager(this));
         rvReceiptItems.setAdapter(adapter);
         rvReceiptItems.setNestedScrollingEnabled(false);
 
-        // Email Receipt
+        // Email receipt
         btnEmailReceipt.setOnClickListener(v -> {
             Intent emailIntent = new Intent(Intent.ACTION_SEND);
             emailIntent.setType("message/rfc822");
             emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"cafeteria@ais.ac.nz"});
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "AIS Cafeteria Receipt " + order.getOrderId());
             emailIntent.putExtra(Intent.EXTRA_TEXT,
-                    "Order: " + order.getOrderId() +
-                            "\nDate: " + order.getDate() +
+                    "Order: "   + order.getOrderId() +
+                            "\nDate: "  + order.getDate() +
                             "\nTotal: $" + String.format(Locale.getDefault(), "%.2f", total) +
                             "\nPayment: " + order.getPaymentMethod() +
                             "\n\nThank you for dining at AIS Cafeteria!" +

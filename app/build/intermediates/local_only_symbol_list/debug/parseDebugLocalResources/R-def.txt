@@ -81,6 +81,7 @@ id btnOrderNow
 id btnPlus
 id btnPrint
 id btnRemove
+id btnSave
 id btnViewCart
 id btnViewDetails
 id btnViewMenu
@@ -112,6 +113,11 @@ id drawerOrders
 id emptyState
 id etCardNumber
 id etCvv
+id etEditCategory
+id etEditDescription
+id etEditEmoji
+id etEditName
+id etEditPrice
 id etExpiry
 id etOrderNote
 id etPassword
@@ -127,6 +133,7 @@ id navDrawer
 id nav_dashboard
 id nav_menu
 id nav_orders
+id progressBar
 id rbCard
 id rbCash
 id rbWallet
@@ -145,7 +152,9 @@ id tvDate
 id tvDesc
 id tvDrawerAvatar
 id tvDrawerName
+id tvEditTitle
 id tvEmoji
+id tvEmptyState
 id tvForgotPassword
 id tvGreeting
 id tvGst
@@ -165,6 +174,7 @@ id tvTotal
 id versionText
 layout activity_cart
 layout activity_contact
+layout activity_edit_menu_item
 layout activity_find_us
 layout activity_gallery
 layout activity_login
@@ -212,7 +222,12 @@ string forgot_password
 string gallery
 string gallery_subtitle
 string gallery_title
+string gcm_defaultSenderId
 string good_morning
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
 string gst
 string history_title
 string hours_saturday
@@ -237,6 +252,7 @@ string pay_wallet
 string payment_title
 string print_receipt
 string proceed_payment
+string project_id
 string quick_actions
 string receipt_title
 string remember_me

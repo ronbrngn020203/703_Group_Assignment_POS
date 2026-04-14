@@ -60,7 +60,12 @@
     <string name="gallery">Gallery</string>
     <string name="gallery_subtitle">AIS Cafeteria — Auckland</string>
     <string name="gallery_title">Gallery</string>
+    <string name="gcm_defaultSenderId" translatable="false">93166560156</string>
     <string name="good_morning">Good Morning, Guest!</string>
+    <string name="google_api_key" translatable="false">AIzaSyDwJ42P-sOdqBwSg7X1sY2TSbfZ9pT5mg4</string>
+    <string name="google_app_id" translatable="false">1:93166560156:android:06311c7878dbe2257e1e59</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDwJ42P-sOdqBwSg7X1sY2TSbfZ9pT5mg4</string>
+    <string name="google_storage_bucket" translatable="false">ais-cafeteria-pos.firebasestorage.app</string>
     <string name="gst">GST (15%)</string>
     <string name="history_title">Order History</string>
     <string name="hours_saturday">Saturday: 8:00 AM – 2:00 PM</string>
@@ -85,6 +90,7 @@
     <string name="payment_title">Payment</string>
     <string name="print_receipt">Print</string>
     <string name="proceed_payment">Proceed to Payment</string>
+    <string name="project_id" translatable="false">ais-cafeteria-pos</string>
     <string name="quick_actions">Quick Actions</string>
     <string name="receipt_title">Order Confirmed!</string>
     <string name="remember_me">Remember Me</string>

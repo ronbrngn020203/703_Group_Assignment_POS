@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.ais.cafeteria.pos.app-mergeDebugResources-34:/values-watch-v21/values-watch-v21.xml",
+            "outputFile": "com.ais.cafeteria.pos.app-mergeDebugResources-36:/values-watch-v21/values-watch-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ronni\\.gradle\\caches\\transforms-4\\1d382a970569d6f4eddada36cac67b49\\transformed\\appcompat-1.6.1\\res\\values-watch-v21\\values-watch-v21.xml",
+                    "source": "C:\\Users\\admin\\.gradle\\caches\\transforms-4\\a890844a47eaafceac9fe1a9cd86e83e\\transformed\\appcompat-1.6.1\\res\\values-watch-v21\\values-watch-v21.xml",
                     "from": {
                         "startLines": "2,6,10",
                         "startColumns": "4,4,4",
