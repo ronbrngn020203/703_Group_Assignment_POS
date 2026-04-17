@@ -113,6 +113,11 @@ public class MainActivity extends AppCompatActivity {
             navigateTo(ContactActivity.class);
         });
 
+        findViewById(R.id.drawerUpdates).setOnClickListener(v -> {
+            drawerLayout.closeDrawers();
+            navigateTo(NewsFeedActivity.class);
+        });
+
         // ── Logout with confirmation dialog ─────────────────
         findViewById(R.id.drawerLogout).setOnClickListener(v -> {
             drawerLayout.closeDrawers();
@@ -143,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         CardView btnFindUs       = findViewById(R.id.btnFindUs);
         CardView btnContact      = findViewById(R.id.btnContact);
         CardView btnOrderHistory = findViewById(R.id.btnOrderHistory);
+        CardView btnUpdates      = findViewById(R.id.btnUpdates);
         TextView btnOrderNow     = findViewById(R.id.btnOrderNow);
 
         btnViewMenu.setOnClickListener(v -> navigateTo(MenuActivity.class));
@@ -151,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
         btnFindUs.setOnClickListener(v -> navigateTo(FindUsActivity.class));
         btnContact.setOnClickListener(v -> navigateTo(ContactActivity.class));
         btnOrderHistory.setOnClickListener(v -> navigateTo(OrderHistoryActivity.class));
+        btnUpdates.setOnClickListener(v -> navigateTo(NewsFeedActivity.class));
         btnOrderNow.setOnClickListener(v -> navigateTo(MenuActivity.class));
 
         btnCart.setOnClickListener(v -> navigateTo(CartActivity.class));
