@@ -1,5 +1,6 @@
 package com.ais.cafeteria.pos.activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,12 +24,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderHistoryActivity extends AppCompatActivity {
+    private static final String PREF_NAME = "AIS_POS_PREFS";
+    private static final String KEY_CURRENT_STAFF_ID = "current_staff_id";
 
     private RecyclerView        rvOrderHistory;
     private OrderHistoryAdapter adapter;
     private EditText            etSearch;
     private ProgressBar         progressBar;
     private TextView            tvEmptyState;
+    private String              currentStaffId;
 
     private final OrderRepository orderRepository = new OrderRepository();
 
@@ -40,6 +44,8 @@ public class OrderHistoryActivity extends AppCompatActivity {
         bindViews();
         setupRecyclerView();
         setupSearch();
+        currentStaffId = getSharedPreferences(PREF_NAME, MODE_PRIVATE)
+                .getString(KEY_CURRENT_STAFF_ID, "Guest");
     }
 
     @Override
@@ -66,12 +72,12 @@ public class OrderHistoryActivity extends AppCompatActivity {
 
     private void loadOrdersFromFirebase() {
         showLoading(true);
-        orderRepository.getAllOrders(new OrderRepository.OnOrdersLoadedCallback() {
+        orderRepository.getOrdersForStaff(currentStaffId, new OrderRepository.OnOrdersLoadedCallback() {
             @Override
             public void onSuccess(List<Order> orders) {
                 showLoading(false);
                 if (orders.isEmpty()) {
-                    showEmptyState("No orders found.");
+                    showEmptyState("No orders found for " + currentStaffId + ".");
                 } else {
                     hideEmptyState();
                     adapter.updateOrders(orders);
@@ -103,7 +109,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
                     return;
                 }
 
-                orderRepository.searchOrders(query, new OrderRepository.OnOrdersLoadedCallback() {
+                orderRepository.searchOrdersForStaff(currentStaffId, query, new OrderRepository.OnOrdersLoadedCallback() {
                     @Override
                     public void onSuccess(List<Order> orders) {
                         if (orders.isEmpty()) {

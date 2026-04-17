@@ -30,8 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private DrawerLayout drawerLayout;
     private LinearLayout btnHamburger;
+    private String currentStaffId;
 
     private static final String PREF_NAME = "AIS_POS_PREFS";
+    private static final String KEY_CURRENT_STAFF_ID = "current_staff_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Get staff name and set greeting + drawer avatar
         String staffId = getIntent().getStringExtra("staff_id");
+        if (staffId == null || staffId.isEmpty()) {
+            SharedPreferences prefs = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+            staffId = prefs.getString(KEY_CURRENT_STAFF_ID, "Guest");
+        }
+        currentStaffId = staffId;
         if (staffId != null && !staffId.isEmpty()) {
             tvGreeting.setText("Good Morning, " + staffId + "!");
             tvDrawerName.setText(staffId);
@@ -118,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                         if (!remember) {
                             prefs.edit().remove("staff_id").apply();
                         }
+                        prefs.edit().remove(KEY_CURRENT_STAFF_ID).apply();
                         CartManager.getInstance().clearCart();
                         Intent intent = new Intent(this, LoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -190,6 +198,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void navigateTo(Class<?> activityClass) {
-        startActivity(new Intent(this, activityClass));
+        Intent intent = new Intent(this, activityClass);
+        intent.putExtra("staff_id", currentStaffId);
+        startActivity(intent);
     }
 }

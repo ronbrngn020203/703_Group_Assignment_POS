@@ -8,6 +8,7 @@ public class Order {
     private List<CartItem> items;
     private double total;
     private String paymentMethod;
+    private String staffId;
     private String status;
     private String note;
 
@@ -31,10 +32,12 @@ public class Order {
     public List<CartItem> getItems()         { return items; }
     public double         getTotal()         { return total; }
     public String         getPaymentMethod() { return paymentMethod; }
+    public String         getStaffId()       { return staffId; }
     public String         getStatus()        { return status; }
     public String         getNote()          { return note; }
 
     // ── Setters ───────────────────────────────────────────────
+    public void setStaffId(String staffId) { this.staffId = staffId; }
     public void setNote(String note)     { this.note   = note; }
     public void setStatus(String status) { this.status = status; }
     public void setTotal(double total)   { this.total  = total; }

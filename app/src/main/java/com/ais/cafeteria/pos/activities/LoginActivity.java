@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences prefs;
     private static final String PREF_NAME = "AIS_POS_PREFS";
     private static final String KEY_STAFF_ID = "staff_id";
+    private static final String KEY_CURRENT_STAFF_ID = "current_staff_id";
     private static final String KEY_REMEMBER = "remember_me";
 
     @Override
@@ -49,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Guest Login button — goes straight to MainActivity as Guest
         btnGuestLogin.setOnClickListener(v -> {
+            saveCurrentStaffId("Guest");
             Toast.makeText(this, "Welcome, Guest!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("staff_id", "Guest");
@@ -97,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(KEY_CURRENT_STAFF_ID, staffId);
         if (cbRememberMe.isChecked()) {
             editor.putString(KEY_STAFF_ID, staffId);
             editor.putBoolean(KEY_REMEMBER, true);
@@ -120,6 +123,10 @@ public class LoginActivity extends AppCompatActivity {
             etStaffId.setText(savedId);
             cbRememberMe.setChecked(true);
         }
+    }
+
+    private void saveCurrentStaffId(String staffId) {
+        prefs.edit().putString(KEY_CURRENT_STAFF_ID, staffId).apply();
     }
 
     @Override
