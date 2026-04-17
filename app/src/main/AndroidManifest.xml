@@ -74,6 +74,10 @@
             android:name=".activities.ContactActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".activities.NewsFeedActivity"
+            android:exported="false" />
+
         <!-- Google Maps API Key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
