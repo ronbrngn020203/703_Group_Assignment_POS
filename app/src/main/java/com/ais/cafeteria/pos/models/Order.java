@@ -37,6 +37,7 @@ public class Order {
     // ── Setters ───────────────────────────────────────────────
     public void setNote(String note)     { this.note   = note; }
     public void setStatus(String status) { this.status = status; }
+    public void setTotal(double total)   { this.total  = total; }
 
     // ── Helper ────────────────────────────────────────────────
     public int getItemCount() {

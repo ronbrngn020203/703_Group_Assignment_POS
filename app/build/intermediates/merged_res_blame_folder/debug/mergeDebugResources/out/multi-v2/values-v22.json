@@ -4,7 +4,7 @@
             "outputFile": "com.ais.cafeteria.pos.app-mergeDebugResources-36:/values-v22/values-v22.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\admin\\.gradle\\caches\\transforms-4\\a890844a47eaafceac9fe1a9cd86e83e\\transformed\\appcompat-1.6.1\\res\\values-v22\\values-v22.xml",
+                    "source": "C:\\Users\\ronni\\.gradle\\caches\\transforms-4\\a890844a47eaafceac9fe1a9cd86e83e\\transformed\\appcompat-1.6.1\\res\\values-v22\\values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",

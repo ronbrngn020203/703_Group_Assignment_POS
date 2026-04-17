@@ -4,7 +4,7 @@
             "outputFile": "com.ais.cafeteria.pos.app-mergeDebugResources-36:/values-w320dp-land-v13/values-w320dp-land-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\admin\\.gradle\\caches\\transforms-4\\ece23ddf3b3f3b77e65617057361a6dc\\transformed\\material-1.11.0\\res\\values-w320dp-land-v13\\values-w320dp-land-v13.xml",
+                    "source": "C:\\Users\\ronni\\.gradle\\caches\\transforms-4\\ece23ddf3b3f3b77e65617057361a6dc\\transformed\\material-1.11.0\\res\\values-w320dp-land-v13\\values-w320dp-land-v13.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

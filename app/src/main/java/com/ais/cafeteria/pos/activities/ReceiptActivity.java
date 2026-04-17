@@ -2,6 +2,7 @@ package com.ais.cafeteria.pos.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,11 @@ public class ReceiptActivity extends AppCompatActivity {
             return;
         }
 
+        // ── Apply GST before saving ──
+        double orderSubtotal = order.getTotal();
+        double orderTotal = Math.round(orderSubtotal * 1.15 * 100.0) / 100.0;
+        order.setTotal(orderTotal);
+
         // ── Save order to Firebase Realtime Database (NoSQL) ──
         OrderRepository orderRepository = new OrderRepository();
         orderRepository.saveOrder(order, new OrderRepository.OnOrderSavedCallback() {
@@ -45,6 +51,9 @@ public class ReceiptActivity extends AppCompatActivity {
             @Override
             public void onError(String message) {
                 Log.e(TAG, "❌ Failed to save order: " + message);
+                // Retry once after 2 seconds
+                new Handler().postDelayed(() ->
+                        orderRepository.saveOrder(order, null), 2000);
             }
         });
 
@@ -61,9 +70,9 @@ public class ReceiptActivity extends AppCompatActivity {
 
         tvOrderId.setText(order.getOrderId());
 
-        double subtotal = order.getTotal();
-        double gst      = subtotal * 0.15;
-        double total    = subtotal + gst;
+        double total    = order.getTotal();
+        double subtotal = total / 1.15;
+        double gst      = total - subtotal;
 
         tvSubtotal.setText(String.format(Locale.getDefault(), "$%.2f", subtotal));
         tvGst.setText(String.format(Locale.getDefault(), "$%.2f", gst));
@@ -110,6 +119,7 @@ public class ReceiptActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

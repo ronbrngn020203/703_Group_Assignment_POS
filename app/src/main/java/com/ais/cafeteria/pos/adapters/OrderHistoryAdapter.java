@@ -61,12 +61,12 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             tvOrderId.setText(order.getOrderId());
             tvOrderMeta.setText(order.getDate() + " · " + order.getItemCount() + " items");
             tvStatus.setText(order.getStatus());
-            double total = order.getTotal() * 1.15;
+            double total = order.getTotal();
             tvTotal.setText(String.format(Locale.getDefault(), "$%.2f", total));
 
             btnViewDetails.setOnClickListener(v -> {
-                double subtotal = order.getTotal();
-                double gst      = subtotal * 0.15;
+                double subtotal = total / 1.15;
+                double gst      = total - subtotal;
 
                 // Build message
                 StringBuilder message = new StringBuilder();
