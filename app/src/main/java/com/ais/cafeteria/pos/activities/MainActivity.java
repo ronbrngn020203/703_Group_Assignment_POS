@@ -2,6 +2,7 @@ package com.ais.cafeteria.pos.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -19,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -40,46 +42,44 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Find views
-        tvDate          = findViewById(R.id.tvDate);
-        tvGreeting      = findViewById(R.id.tvGreeting);
-        tvCartBadge     = findViewById(R.id.tvCartBadge);
-        btnCart         = findViewById(R.id.btnCart);
-        bottomNav       = findViewById(R.id.bottomNav);
-        fab             = findViewById(R.id.fab);
-        drawerLayout    = findViewById(R.id.drawerLayout);
-        btnHamburger    = findViewById(R.id.btnHamburger);
-        tvDrawerName    = findViewById(R.id.tvDrawerName);
-        tvDrawerAvatar  = findViewById(R.id.tvDrawerAvatar);
+        tvDate       = findViewById(R.id.tvDate);
+        tvGreeting   = findViewById(R.id.tvGreeting);
+        tvCartBadge  = findViewById(R.id.tvCartBadge);
+        btnCart      = findViewById(R.id.btnCart);
+        bottomNav    = findViewById(R.id.bottomNav);
+        fab          = findViewById(R.id.fab);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        btnHamburger = findViewById(R.id.btnHamburger);
+        tvDrawerName = findViewById(R.id.tvDrawerName);
+        tvDrawerAvatar = findViewById(R.id.tvDrawerAvatar);
 
-        // Set date
         String date = new SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault())
                 .format(new Date()).toUpperCase(Locale.getDefault());
         tvDate.setText(date);
 
-        // Get staff name and set greeting + drawer avatar
         String staffId = getIntent().getStringExtra("staff_id");
         if (staffId == null || staffId.isEmpty()) {
             SharedPreferences prefs = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
             staffId = prefs.getString(KEY_CURRENT_STAFF_ID, "Guest");
         }
         currentStaffId = staffId;
-        if (staffId != null && !staffId.isEmpty()) {
-            tvGreeting.setText("Good Morning, " + staffId + "!");
-            tvDrawerName.setText(staffId);
-            // Show first letter of name as avatar initial
-            tvDrawerAvatar.setText(String.valueOf(staffId.charAt(0)).toUpperCase());
-        } else {
-            tvGreeting.setText("Good Morning, Guest!");
-            tvDrawerName.setText("Guest");
-            tvDrawerAvatar.setText("G");
+
+        String displayName = (staffId != null && !staffId.isEmpty()) ? staffId : "Guest";
+        tvGreeting.setText(getTimeBasedGreeting() + ", " + displayName + "!");
+        tvDrawerName.setText(displayName);
+        if (tvDrawerAvatar != null) {
+            if (!displayName.isEmpty() && !displayName.equalsIgnoreCase("Guest")) {
+                tvDrawerAvatar.setText(String.valueOf(displayName.charAt(0)).toUpperCase(Locale.getDefault()));
+            } else {
+                tvDrawerAvatar.setText("G");
+            }
         }
 
-        // ── Hamburger opens drawer ──────────────────────────
+        updateCafeStatus();
+
         btnHamburger.setOnClickListener(v ->
                 drawerLayout.openDrawer(findViewById(R.id.navDrawer)));
 
-        // ── Drawer navigation items ─────────────────────────
         findViewById(R.id.drawerHome).setOnClickListener(v ->
                 drawerLayout.closeDrawers());
 
@@ -118,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
             navigateTo(NewsFeedActivity.class);
         });
 
-        // ── Logout with confirmation dialog ─────────────────
         findViewById(R.id.drawerLogout).setOnClickListener(v -> {
             drawerLayout.closeDrawers();
             new AlertDialog.Builder(this)
@@ -141,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
                     .show();
         });
 
-        // ── Quick Action Buttons ────────────────────────────
         CardView btnViewMenu     = findViewById(R.id.btnViewMenu);
         CardView btnViewCart     = findViewById(R.id.btnViewCart);
         CardView btnGallery      = findViewById(R.id.btnGallery);
@@ -163,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
         btnCart.setOnClickListener(v -> navigateTo(CartActivity.class));
         fab.setOnClickListener(v -> navigateTo(MenuActivity.class));
 
-        // ── Bottom Navigation ───────────────────────────────
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_dashboard) {
@@ -179,10 +176,73 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private String getTimeBasedGreeting() {
+        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        if (hour >= 5 && hour < 12) return "Good Morning";
+        else if (hour >= 12 && hour < 17) return "Good Afternoon";
+        else if (hour >= 17 && hour < 21) return "Good Evening";
+        else return "Good Night";
+    }
+
+    private void updateCafeStatus() {
+        LinearLayout statusPill = findViewById(R.id.statusPill);
+        TextView tvStatus = null;
+
+        if (statusPill != null && statusPill.getChildCount() > 1) {
+            View child = statusPill.getChildAt(1);
+            if (child instanceof TextView) {
+                tvStatus = (TextView) child;
+            }
+        }
+
+        Calendar now = Calendar.getInstance();
+        int hour = now.get(Calendar.HOUR_OF_DAY);
+        int minute = now.get(Calendar.MINUTE);
+        int dayOfWeek = now.get(Calendar.DAY_OF_WEEK);
+        int totalMinutes = hour * 60 + minute;
+
+        boolean isOpen = false;
+        String statusText;
+
+        if (dayOfWeek >= Calendar.MONDAY && dayOfWeek <= Calendar.FRIDAY) {
+            // Mon-Fri: 8:00 AM - 2:30 PM
+            if (totalMinutes >= 480 && totalMinutes < 870) {
+                isOpen = true;
+                statusText = "OPEN · Closes 2:30 PM";
+            } else if (totalMinutes >= 870) {
+                statusText = "CLOSED · Opens Tomorrow 8:00 AM";
+            } else {
+                statusText = "CLOSED · Opens at 8:00 AM";
+            }
+        } else if (dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY) {
+            // Sat-Sun: 9:00 AM - 3:00 PM
+            if (totalMinutes >= 540 && totalMinutes < 900) {
+                isOpen = true;
+                statusText = "OPEN · Closes 3:00 PM";
+            } else if (totalMinutes >= 900) {
+                statusText = "CLOSED · Opens Tomorrow 9:00 AM";
+            } else {
+                statusText = "CLOSED · Opens at 9:00 AM";
+            }
+        } else {
+            statusText = "CLOSED";
+        }
+
+        if (tvStatus != null) tvStatus.setText(statusText);
+
+        if (statusPill != null && statusPill.getChildCount() > 0) {
+            View dot = statusPill.getChildAt(0);
+            dot.setBackgroundColor(Color.parseColor(isOpen ? "#27AE60" : "#E74C3C"));
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         updateCartBadge();
+        tvGreeting.setText(getTimeBasedGreeting() + ", " +
+                tvDrawerName.getText().toString() + "!");
+        updateCafeStatus();
     }
 
     @Override

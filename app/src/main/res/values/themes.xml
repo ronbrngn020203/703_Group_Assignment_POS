@@ -14,8 +14,9 @@
 
     <style name="Theme.AISCafeteria.Splash" parent="Theme.AISCafeteria">
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@color/ais_red</item>
-        <item name="android:statusBarColor">@color/ais_red</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowSplashScreenBackground">@color/white</item>
     </style>
 
     <!-- Base AIS style -->

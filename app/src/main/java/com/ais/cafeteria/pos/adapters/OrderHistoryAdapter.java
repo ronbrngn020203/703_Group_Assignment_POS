@@ -1,6 +1,7 @@
 package com.ais.cafeteria.pos.adapters;
 
 import android.app.AlertDialog;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,15 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             tvOrderId.setText(order.getOrderId());
             tvOrderMeta.setText(order.getDate() + " · " + order.getItemCount() + " items");
             tvStatus.setText(order.getStatus());
+
+            if (order.getStatus() != null && order.getStatus().equals("Pending")) {
+                tvStatus.setTextColor(Color.parseColor("#E67E22"));
+                tvStatus.setBackgroundResource(R.drawable.bg_chip_unselected);
+            } else {
+                tvStatus.setTextColor(Color.parseColor("#27AE60"));
+                tvStatus.setBackgroundResource(R.drawable.bg_success_pill);
+            }
+
             double total = order.getTotal();
             tvTotal.setText(String.format(Locale.getDefault(), "$%.2f", total));
 
@@ -68,19 +78,29 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
                 double subtotal = total / 1.15;
                 double gst      = total - subtotal;
 
-                // Build message
                 StringBuilder message = new StringBuilder();
                 message.append("📋 Order: ").append(order.getOrderId()).append("\n");
                 message.append("📅 Date: ").append(order.getDate()).append("\n");
                 message.append("💳 Payment: ").append(order.getPaymentMethod()).append("\n");
                 message.append("━━━━━━━━━━━━━━━━━━━━\n");
-                message.append("Subtotal:   $").append(String.format(Locale.getDefault(), "%.2f", subtotal)).append("\n");
-                message.append("GST (15%): $").append(String.format(Locale.getDefault(), "%.2f", gst)).append("\n");
+                message.append("Subtotal:   $")
+                        .append(String.format(Locale.getDefault(), "%.2f", subtotal)).append("\n");
+                message.append("GST (15%): $")
+                        .append(String.format(Locale.getDefault(), "%.2f", gst)).append("\n");
                 message.append("━━━━━━━━━━━━━━━━━━━━\n");
-                message.append("Total Paid: $").append(String.format(Locale.getDefault(), "%.2f", total)).append("\n");
+                message.append("Total Paid: $")
+                        .append(String.format(Locale.getDefault(), "%.2f", total)).append("\n");
                 message.append("Status: ").append(order.getStatus());
 
-                // Show dialog
+                // ✅ Show note if exists
+                if (order.getNote() != null && !order.getNote().isEmpty()) {
+                    message.append("\n📝 Note: ").append(order.getNote());
+                }
+
+                if (order.getStatus() != null && order.getStatus().equals("Pending")) {
+                    message.append("\n⚠ Please visit the counter to pay cash.");
+                }
+
                 new AlertDialog.Builder(v.getContext())
                         .setTitle("Order " + order.getOrderId())
                         .setMessage(message.toString())

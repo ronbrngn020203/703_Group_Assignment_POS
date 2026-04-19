@@ -4,102 +4,83 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_red_gradient">
+    android:background="#FFFFFF">
 
-    <!-- Decorative circle top-right -->
+    <!-- Gold decorative circle top-right -->
     <View
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:background="#22FFFFFF"
-        android:layout_marginTop="-60dp"
-        android:layout_marginEnd="-60dp"
+        android:id="@+id/circle_top"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:background="@drawable/circle_gold_faded"
+        android:layout_marginTop="-70dp"
+        android:layout_marginEnd="-70dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/circle_top" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Decorative circle bottom-left -->
+    <!-- Gold decorative circle bottom-left -->
     <View
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:background="#15FFFFFF"
-        android:layout_marginBottom="-50dp"
-        android:layout_marginStart="-50dp"
+        android:id="@+id/circle_bottom"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/circle_gold_faded"
+        android:layout_marginBottom="-60dp"
+        android:layout_marginStart="-60dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/circle_bottom" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
-    <!-- Logo Container -->
-    <LinearLayout
-        android:id="@+id/logoContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
+    <!-- Manna Logo -->
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="260dp"
+        android:layout_height="160dp"
+        android:src="@drawable/manna_logo"
+        android:contentDescription="Manna Logo"
+        android:scaleType="fitCenter"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/taglineText"
+        app:layout_constraintBottom_toTopOf="@id/dividerLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="24dp">
+        android:layout_marginBottom="32dp"/>
 
-        <ImageView
-            android:id="@+id/ivLogo"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/ic_ais_logo_splash"
-            android:contentDescription="AIS Logo" />
-
-        <TextView
-            android:id="@+id/tvAisName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Auckland Institute\nof Studies"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="12dp"
-            android:letterSpacing="0.05" />
-
-    </LinearLayout>
-
-    <!-- Divider line -->
+    <!-- Gold divider -->
     <View
         android:id="@+id/dividerLine"
-        android:layout_width="60dp"
+        android:layout_width="80dp"
         android:layout_height="2dp"
-        android:background="#66FFFFFF"
+        android:background="#C9A84C"
         app:layout_constraintBottom_toTopOf="@id/appTitleText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"/>
 
     <!-- App Title -->
     <TextView
         android:id="@+id/appTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cafeteria POS"
-        android:textColor="@color/white"
-        android:textSize="28sp"
+        android:text="Point of Sale"
+        android:textColor="#1A1A1A"
+        android:textSize="22sp"
         android:textStyle="bold"
-        android:letterSpacing="0.03"
+        android:letterSpacing="0.15"
         app:layout_constraintBottom_toTopOf="@id/taglineText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="6dp"/>
 
     <!-- Tagline -->
     <TextView
         android:id="@+id/taglineText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Point of Sale System"
-        android:textColor="#CCFFFFFF"
-        android:textSize="14sp"
+        android:text="Auckland Institute of Studies"
+        android:textColor="#888888"
+        android:textSize="13sp"
+        android:letterSpacing="0.05"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Loading dots -->
     <LinearLayout
@@ -111,16 +92,22 @@
         app:layout_constraintTop_toBottomOf="@id/taglineText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="36dp">
 
-        <View android:id="@+id/dot1" android:layout_width="10dp" android:layout_height="10dp"
-            android:background="#FFFFFFFF"
-            android:layout_marginEnd="6dp" />
-        <View android:id="@+id/dot2" android:layout_width="10dp" android:layout_height="10dp"
-            android:background="#66FFFFFF"
-            android:layout_marginEnd="6dp" />
-        <View android:id="@+id/dot3" android:layout_width="10dp" android:layout_height="10dp"
-            android:background="#33FFFFFF" />
+        <View android:id="@+id/dot1"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/dot_gold"
+            android:layout_marginEnd="8dp"/>
+        <View android:id="@+id/dot2"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/dot_gold"
+            android:layout_marginEnd="8dp"/>
+        <View android:id="@+id/dot3"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/dot_gold"/>
     </LinearLayout>
 
     <!-- Version -->
@@ -129,11 +116,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_version"
-        android:textColor="#66FFFFFF"
+        android:textColor="#AAAAAA"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="24dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
