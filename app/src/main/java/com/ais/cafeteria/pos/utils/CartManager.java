@@ -209,7 +209,7 @@ public class CartManager {
         orderCounter++;
         String orderId = "#" + orderCounter;
         String date = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date());
-        Order order = new Order(orderId, date, new ArrayList<>(cartItems), getSubtotal(), paymentMethod);
+        Order order = new Order(orderId, date, new ArrayList<>(cartItems), getTotal(), paymentMethod);
         order.setNote(note);
         orderHistory.add(0, order);
         lastOrder = order;

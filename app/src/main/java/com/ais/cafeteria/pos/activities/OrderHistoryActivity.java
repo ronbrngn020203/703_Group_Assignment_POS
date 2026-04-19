@@ -1,5 +1,6 @@
 package com.ais.cafeteria.pos.activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,22 +23,17 @@ import com.ais.cafeteria.pos.repository.OrderRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * OrderHistoryActivity  —  Tier 1 (User Interface) for Order History.
- *
- * Changes for Task 3:
- *  • Orders are now loaded from Firebase Firestore (NoSQL) via OrderRepository.
- *  • Search is performed via OrderRepository.searchOrders() (Firestore fetch + in-memory filter).
- */
 public class OrderHistoryActivity extends AppCompatActivity {
+    private static final String PREF_NAME = "AIS_POS_PREFS";
+    private static final String KEY_CURRENT_STAFF_ID = "current_staff_id";
 
-    private RecyclerView         rvOrderHistory;
-    private OrderHistoryAdapter  adapter;
-    private EditText             etSearch;
-    private ProgressBar          progressBar;
-    private TextView             tvEmptyState;
+    private RecyclerView        rvOrderHistory;
+    private OrderHistoryAdapter adapter;
+    private EditText            etSearch;
+    private ProgressBar         progressBar;
+    private TextView            tvEmptyState;
+    private String              currentStaffId;
 
-    // ── Data Access Layer (NoSQL) ─────────────────────────────
     private final OrderRepository orderRepository = new OrderRepository();
 
     @Override
@@ -48,12 +44,15 @@ public class OrderHistoryActivity extends AppCompatActivity {
         bindViews();
         setupRecyclerView();
         setupSearch();
-
-        // Load orders from Firestore
-        loadOrdersFromFirestore();
+        currentStaffId = getSharedPreferences(PREF_NAME, MODE_PRIVATE)
+                .getString(KEY_CURRENT_STAFF_ID, "Guest");
     }
 
-    // ── Bind Views ────────────────────────────────────────────
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadOrdersFromFirebase();
+    }
 
     private void bindViews() {
         rvOrderHistory = findViewById(R.id.rvOrderHistory);
@@ -65,28 +64,20 @@ public class OrderHistoryActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> onBackPressed());
     }
 
-    // ── RecyclerView ──────────────────────────────────────────
-
     private void setupRecyclerView() {
         adapter = new OrderHistoryAdapter(new ArrayList<>());
         rvOrderHistory.setLayoutManager(new LinearLayoutManager(this));
         rvOrderHistory.setAdapter(adapter);
     }
 
-    // ── Load From Firestore ───────────────────────────────────
-
-    /**
-     * Fetches all orders from the Firestore "orders" collection.
-     * Sorted newest-first by the server timestamp.
-     */
-    private void loadOrdersFromFirestore() {
+    private void loadOrdersFromFirebase() {
         showLoading(true);
-        orderRepository.getAllOrders(new OrderRepository.OnOrdersLoadedCallback() {
+        orderRepository.getOrdersForStaff(currentStaffId, new OrderRepository.OnOrdersLoadedCallback() {
             @Override
             public void onSuccess(List<Order> orders) {
                 showLoading(false);
                 if (orders.isEmpty()) {
-                    showEmptyState("No orders found.");
+                    showEmptyState("No orders found for " + currentStaffId + ".");
                 } else {
                     hideEmptyState();
                     adapter.updateOrders(orders);
@@ -103,8 +94,6 @@ public class OrderHistoryActivity extends AppCompatActivity {
         });
     }
 
-    // ── Search (Firestore fetch + in-memory filter) ───────────
-
     private void setupSearch() {
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int st, int c, int a) {}
@@ -112,13 +101,15 @@ public class OrderHistoryActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (before == 0 && count == 0) return;
+
                 String query = s.toString().trim();
                 if (query.isEmpty()) {
-                    loadOrdersFromFirestore(); // Reload all
+                    loadOrdersFromFirebase();
                     return;
                 }
-                // Search via repository (fetches all from Firestore, filters in-memory)
-                orderRepository.searchOrders(query, new OrderRepository.OnOrdersLoadedCallback() {
+
+                orderRepository.searchOrdersForStaff(currentStaffId, query, new OrderRepository.OnOrdersLoadedCallback() {
                     @Override
                     public void onSuccess(List<Order> orders) {
                         if (orders.isEmpty()) {
@@ -138,8 +129,6 @@ public class OrderHistoryActivity extends AppCompatActivity {
             }
         });
     }
-
-    // ── UI Helpers ────────────────────────────────────────────
 
     private void showLoading(boolean show) {
         if (progressBar != null)

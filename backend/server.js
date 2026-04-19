@@ -8,9 +8,21 @@
 // ─────────────────────────────────────────────────────────────
 const express   = require('express');
 const cors      = require('cors');
+const https     = require('https');
 const initSqlJs = require('sql.js');
 const path      = require('path');
 const fs        = require('fs');
+
+const AIS_NEWS_PAGE = 'https://www.ais.ac.nz/news';
+
+/** Same class of headers as the Android app — some hosts return 502/403 for bare Node requests. */
+const AIS_UPSTREAM_HEADERS = {
+    'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+        + 'Chrome/120.0.0.0 Safari/537.36',
+    Accept: 'text/html,application/xhtml+xml;q=0.9,*/*;q=0.8',
+    'Accept-Language': 'en-NZ,en;q=0.9',
+};
 
 const app    = express();
 const PORT   = 3000;
@@ -149,13 +161,46 @@ app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
+/**
+ * Proxies the AIS News HTML page so Android devices that hit TLS trust issues
+ * (e.g. incomplete certificate chains) can still load the feed via this HTTP API.
+ */
+app.get('/api/ais-news-html', (req, res) => {
+    const reqUp = https.get(AIS_NEWS_PAGE, { headers: AIS_UPSTREAM_HEADERS }, (upstream) => {
+        const chunks = [];
+        upstream.on('data', (chunk) => chunks.push(chunk));
+        upstream.on('end', () => {
+            const body = Buffer.concat(chunks);
+            if (upstream.statusCode && upstream.statusCode >= 400) {
+                res.status(502).type('text/plain').send(
+                    `Upstream AIS News returned HTTP ${upstream.statusCode}`
+                );
+                return;
+            }
+            res.type('text/html; charset=utf-8').send(body.toString('utf8'));
+        });
+    });
+    reqUp.setTimeout(35_000, () => {
+        reqUp.destroy();
+        if (!res.headersSent) {
+            res.status(504).type('text/plain').send('Upstream AIS News request timed out.');
+        }
+    });
+    reqUp.on('error', (err) => {
+        if (!res.headersSent) {
+            res.status(502).json({ success: false, message: err.message || 'Proxy fetch failed.' });
+        }
+    });
+});
+
 // ── Start ─────────────────────────────────────────────────────
 initDatabase().then(() => {
     app.listen(PORT, () => {
         console.log(`\n🚀  AIS Cafeteria API running on http://localhost:${PORT}`);
         console.log(`   GET  /api/menu            → Fetch all menu items`);
         console.log(`   GET  /api/menu/search?q=  → Search menu items`);
-        console.log(`   PUT  /api/menu/:id        → Update a menu item\n`);
+        console.log(`   PUT  /api/menu/:id        → Update a menu item`);
+        console.log(`   GET  /api/ais-news-html   → Proxy HTML for AIS News (POS updates tab)\n`);
     });
 }).catch(err => {
     console.error('Failed to initialise database:', err);

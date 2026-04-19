@@ -66,10 +66,10 @@
 
                 <Button
                     android:id="@+id/btnOpenMaps"
+                    style="@style/AIS.Button.Red"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
                     android:text="Open in Maps"
-                    android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:backgroundTint="#C9A84C"
@@ -136,6 +136,77 @@
                 </androidx.cardview.widget.CardView>
 
                 <!-- Opening Hours -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/white">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="GPS Assistance"
+                            android:textColor="@color/text_primary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvGpsStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Checking device location..."
+                            android:textColor="@color/text_secondary"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvDistance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Distance unavailable"
+                            android:textColor="@color/ais_red"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/btnMyLocation"
+                                style="@style/AIS.Button.Red"
+                                android:layout_width="wrap_content"
+                                android:layout_height="36dp"
+                                android:text="My Location"
+                                android:textSize="12sp"
+                                android:paddingStart="14dp"
+                                android:paddingEnd="14dp" />
+
+                            <Button
+                                android:id="@+id/btnDirections"
+                                style="@style/AIS.Button.Outline"
+                                android:layout_width="wrap_content"
+                                android:layout_height="36dp"
+                                android:layout_marginStart="8dp"
+                                android:text="Directions"
+                                android:textSize="12sp"
+                                android:paddingStart="14dp"
+                                android:paddingEnd="14dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

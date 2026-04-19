@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
+        android:name=".CafeteriaApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -72,6 +73,10 @@
         <!-- Contact/About Activity -->
         <activity
             android:name=".activities.ContactActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.NewsFeedActivity"
             android:exported="false" />
 
         <!-- Google Maps API Key -->

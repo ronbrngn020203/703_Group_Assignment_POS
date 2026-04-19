@@ -26,14 +26,16 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tvDate, tvGreeting, tvCartBadge, tvDrawerName;
+    private TextView tvDate, tvGreeting, tvCartBadge, tvDrawerName, tvDrawerAvatar;
     private FrameLayout btnCart;
     private BottomNavigationView bottomNav;
     private FloatingActionButton fab;
     private DrawerLayout drawerLayout;
     private LinearLayout btnHamburger;
+    private String currentStaffId;
 
     private static final String PREF_NAME = "AIS_POS_PREFS";
+    private static final String KEY_CURRENT_STAFF_ID = "current_staff_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +51,29 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         btnHamburger = findViewById(R.id.btnHamburger);
         tvDrawerName = findViewById(R.id.tvDrawerName);
+        tvDrawerAvatar = findViewById(R.id.tvDrawerAvatar);
 
         String date = new SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault())
                 .format(new Date()).toUpperCase(Locale.getDefault());
         tvDate.setText(date);
 
         String staffId = getIntent().getStringExtra("staff_id");
-        String name = (staffId != null && !staffId.isEmpty()) ? staffId : "Guest";
-        tvGreeting.setText(getTimeBasedGreeting() + ", " + name + "!");
-        tvDrawerName.setText(name);
+        if (staffId == null || staffId.isEmpty()) {
+            SharedPreferences prefs = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+            staffId = prefs.getString(KEY_CURRENT_STAFF_ID, "Guest");
+        }
+        currentStaffId = staffId;
+
+        String displayName = (staffId != null && !staffId.isEmpty()) ? staffId : "Guest";
+        tvGreeting.setText(getTimeBasedGreeting() + ", " + displayName + "!");
+        tvDrawerName.setText(displayName);
+        if (tvDrawerAvatar != null) {
+            if (!displayName.isEmpty() && !displayName.equalsIgnoreCase("Guest")) {
+                tvDrawerAvatar.setText(String.valueOf(displayName.charAt(0)).toUpperCase(Locale.getDefault()));
+            } else {
+                tvDrawerAvatar.setText("G");
+            }
+        }
 
         updateCafeStatus();
 
@@ -97,6 +113,11 @@ public class MainActivity extends AppCompatActivity {
             navigateTo(ContactActivity.class);
         });
 
+        findViewById(R.id.drawerUpdates).setOnClickListener(v -> {
+            drawerLayout.closeDrawers();
+            navigateTo(NewsFeedActivity.class);
+        });
+
         findViewById(R.id.drawerLogout).setOnClickListener(v -> {
             drawerLayout.closeDrawers();
             new AlertDialog.Builder(this)
@@ -108,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
                         if (!remember) {
                             prefs.edit().remove("staff_id").apply();
                         }
+                        prefs.edit().remove(KEY_CURRENT_STAFF_ID).apply();
                         CartManager.getInstance().clearCart();
                         Intent intent = new Intent(this, LoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -124,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
         CardView btnFindUs       = findViewById(R.id.btnFindUs);
         CardView btnContact      = findViewById(R.id.btnContact);
         CardView btnOrderHistory = findViewById(R.id.btnOrderHistory);
+        CardView btnUpdates      = findViewById(R.id.btnUpdates);
         TextView btnOrderNow     = findViewById(R.id.btnOrderNow);
 
         btnViewMenu.setOnClickListener(v -> navigateTo(MenuActivity.class));
@@ -132,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
         btnFindUs.setOnClickListener(v -> navigateTo(FindUsActivity.class));
         btnContact.setOnClickListener(v -> navigateTo(ContactActivity.class));
         btnOrderHistory.setOnClickListener(v -> navigateTo(OrderHistoryActivity.class));
+        btnUpdates.setOnClickListener(v -> navigateTo(NewsFeedActivity.class));
         btnOrderNow.setOnClickListener(v -> navigateTo(MenuActivity.class));
 
         btnCart.setOnClickListener(v -> navigateTo(CartActivity.class));
@@ -241,6 +265,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void navigateTo(Class<?> activityClass) {
-        startActivity(new Intent(this, activityClass));
+        Intent intent = new Intent(this, activityClass);
+        intent.putExtra("staff_id", currentStaffId);
+        startActivity(intent);
     }
 }

@@ -22,6 +22,11 @@ public class RetrofitClient {
 
     private RetrofitClient() {}
 
+    /** Base URL for the Node middle-tier (menu API and optional AIS News HTML proxy). */
+    public static String getBaseUrl() {
+        return BASE_URL;
+    }
+
     /** Returns the shared Retrofit instance (creates it on first call). */
     public static Retrofit getInstance() {
         if (retrofitInstance == null) {

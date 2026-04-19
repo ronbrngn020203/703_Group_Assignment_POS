@@ -3,17 +3,21 @@
 build/
 !gradle/wrapper/gradle-wrapper.jar
 
-# Android Studio / IntelliJ
+# Android Studio / IntelliJ (this repo may still track parts of .idea/)
 *.iml
 *.ipr
 *.iws
 local.properties
 captures/
 
-# Module build outputs
-app/build/
+# Build outputs & packages
 *.apk
 *.aab
+*.ap_
+
+# Keystores
+*.jks
+*.keystore
 
 # NDK
 .externalNativeBuild/

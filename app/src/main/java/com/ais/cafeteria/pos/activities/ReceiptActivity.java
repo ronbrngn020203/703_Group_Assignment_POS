@@ -1,8 +1,10 @@
 package com.ais.cafeteria.pos.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -23,6 +25,8 @@ import java.util.Locale;
 public class ReceiptActivity extends AppCompatActivity {
 
     private static final String TAG = "ReceiptActivity";
+    private static final String PREF_NAME = "AIS_POS_PREFS";
+    private static final String KEY_CURRENT_STAFF_ID = "current_staff_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +40,16 @@ public class ReceiptActivity extends AppCompatActivity {
             return;
         }
 
-        // ── Save order to Firebase ────────────────────────────
+        double orderSubtotal = order.getTotal();
+        double orderTotal = Math.round(orderSubtotal * 1.15 * 100.0) / 100.0;
+        order.setTotal(orderTotal);
+
+        SharedPreferences prefs = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        String staffId = prefs.getString(KEY_CURRENT_STAFF_ID, "Guest");
+        order.setStaffId(staffId);
+
         OrderRepository orderRepository = new OrderRepository();
-        orderRepository.saveOrder(order, new OrderRepository.OnOrderSavedCallback() {
+        orderRepository.saveOrder(staffId, order, new OrderRepository.OnOrderSavedCallback() {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "✅ Order saved to Firebase: " + order.getOrderId());
@@ -47,6 +58,9 @@ public class ReceiptActivity extends AppCompatActivity {
             @Override
             public void onError(String message) {
                 Log.e(TAG, "❌ Failed to save order: " + message);
+                // Retry once after 2 seconds
+                new Handler().postDelayed(() ->
+                        orderRepository.saveOrder(staffId, order, null), 2000);
             }
         });
 
@@ -70,9 +84,9 @@ public class ReceiptActivity extends AppCompatActivity {
 
         tvOrderId.setText(order.getOrderId());
 
-        double subtotal = order.getTotal();
-        double gst      = subtotal * 0.15;
-        double total    = subtotal + gst;
+        double total    = order.getTotal();
+        double subtotal = total / 1.15;
+        double gst      = total - subtotal;
 
         tvSubtotal.setText(String.format(Locale.getDefault(), "$%.2f", subtotal));
         tvGst.setText(String.format(Locale.getDefault(), "$%.2f", gst));
@@ -139,6 +153,7 @@ public class ReceiptActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

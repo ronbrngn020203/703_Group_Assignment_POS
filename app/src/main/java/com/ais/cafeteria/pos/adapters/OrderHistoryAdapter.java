@@ -63,7 +63,6 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             tvOrderMeta.setText(order.getDate() + " · " + order.getItemCount() + " items");
             tvStatus.setText(order.getStatus());
 
-            // ✅ Color based on status
             if (order.getStatus() != null && order.getStatus().equals("Pending")) {
                 tvStatus.setTextColor(Color.parseColor("#E67E22"));
                 tvStatus.setBackgroundResource(R.drawable.bg_chip_unselected);
@@ -72,12 +71,12 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
                 tvStatus.setBackgroundResource(R.drawable.bg_success_pill);
             }
 
-            double total = order.getTotal() * 1.15;
+            double total = order.getTotal();
             tvTotal.setText(String.format(Locale.getDefault(), "$%.2f", total));
 
             btnViewDetails.setOnClickListener(v -> {
-                double subtotal = order.getTotal();
-                double gst      = subtotal * 0.15;
+                double subtotal = total / 1.15;
+                double gst      = total - subtotal;
 
                 StringBuilder message = new StringBuilder();
                 message.append("📋 Order: ").append(order.getOrderId()).append("\n");

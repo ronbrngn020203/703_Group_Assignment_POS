@@ -52,8 +52,12 @@ public class OrderRepository {
      * Saves a completed order to Firebase Realtime Database.
      * Path: /orders/{orderId}
      */
-    public void saveOrder(Order order, OnOrderSavedCallback callback) {
-        ordersRef.child(sanitizeKey(order.getOrderId()))
+    public void saveOrder(String staffId, Order order, OnOrderSavedCallback callback) {
+        String staffKey = sanitizeStaffKey(staffId);
+        order.setStaffId(staffId);
+
+        ordersRef.child(staffKey)
+                .child(sanitizeOrderKey(order.getOrderId()))
                 .setValue(orderToMap(order))
                 .addOnSuccessListener(unused -> {
                     if (callback != null) callback.onSuccess();
@@ -69,8 +73,8 @@ public class OrderRepository {
      * Reads all orders from /orders and returns them as a List.
      * Firebase RTDB returns children in key order — we reverse for newest-first.
      */
-    public void getAllOrders(OnOrdersLoadedCallback callback) {
-        ordersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void getOrdersForStaff(String staffId, OnOrdersLoadedCallback callback) {
+        ordersRef.child(sanitizeStaffKey(staffId)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 List<Order> orders = new ArrayList<>();
@@ -94,8 +98,8 @@ public class OrderRepository {
      * Fetches all orders then filters in-memory by orderId, date,
      * payment method, or status.
      */
-    public void searchOrders(String query, OnOrdersLoadedCallback callback) {
-        getAllOrders(new OnOrdersLoadedCallback() {
+    public void searchOrdersForStaff(String staffId, String query, OnOrdersLoadedCallback callback) {
+        getOrdersForStaff(staffId, new OnOrdersLoadedCallback() {
             @Override
             public void onSuccess(List<Order> allOrders) {
                 String lq = query.toLowerCase().trim();
@@ -124,8 +128,22 @@ public class OrderRepository {
      * Firebase keys cannot contain . # $ [ ]
      * Strips the '#' from order IDs like "#1022" → "1022"
      */
-    private String sanitizeKey(String orderId) {
+    private String sanitizeOrderKey(String orderId) {
         return orderId.replace("#", "").trim();
+    }
+
+    private String sanitizeStaffKey(String staffId) {
+        if (staffId == null || staffId.trim().isEmpty()) {
+            return "guest";
+        }
+
+        return staffId.trim()
+                .replace(".", "_")
+                .replace("#", "_")
+                .replace("$", "_")
+                .replace("[", "_")
+                .replace("]", "_")
+                .replace("/", "_");
     }
 
     /** Converts an Order to a Map for Firebase storage. */
@@ -135,6 +153,7 @@ public class OrderRepository {
         map.put("date",          order.getDate());
         map.put("total",         order.getTotal());
         map.put("paymentMethod", order.getPaymentMethod());
+        map.put("staffId",       order.getStaffId() != null ? order.getStaffId() : "Guest");
         map.put("status",        order.getStatus() != null ? order.getStatus() : "Completed");
         map.put("note",          order.getNote()   != null ? order.getNote()   : "");
         map.put("timestamp",     System.currentTimeMillis());
@@ -163,6 +182,7 @@ public class OrderRepository {
             String orderId       = snap.child("orderId").getValue(String.class);
             String date          = snap.child("date").getValue(String.class);
             String paymentMethod = snap.child("paymentMethod").getValue(String.class);
+            String staffId       = snap.child("staffId").getValue(String.class);
             String status        = snap.child("status").getValue(String.class);
             String note          = snap.child("note").getValue(String.class);
             Double totalDouble   = snap.child("total").getValue(Double.class);
@@ -197,6 +217,7 @@ public class OrderRepository {
                     items, total,
                     paymentMethod != null ? paymentMethod : ""
             );
+            order.setStaffId(staffId != null ? staffId : "Guest");
             if (status != null) order.setStatus(status);
             if (note   != null) order.setNote(note);
             return order;
