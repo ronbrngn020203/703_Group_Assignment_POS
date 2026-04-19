@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AIS Cafeteria</string>
+    <string name="app_name">Manna Cafe &amp; Catering</string>
     <string name="app_tagline">Auckland Institute of Studies</string>
 
     <!-- Login -->
@@ -12,9 +12,9 @@
     <string name="forgot_password">Forgot password? Contact IT Support</string>
 
     <!-- Dashboard -->
-    <string name="dashboard_title">AIS Cafeteria</string>
+    <string name="dashboard_title">Manna Cafe &amp; Catering</string>
     <string name="good_morning">Good Morning, Guest!</string>
-    <string name="cafeteria_open">OPEN · Closes 4:00 PM</string>
+    <string name="cafeteria_open">OPEN · Closes 2:30 PM</string>
     <string name="chefs_pick">Chef\'s Pick</string>
     <string name="order_now">Order Now</string>
     <string name="quick_actions">Quick Actions</string>
@@ -70,11 +70,11 @@
 
     <!-- Gallery -->
     <string name="gallery_title">Gallery</string>
-    <string name="gallery_subtitle">AIS Cafeteria — Auckland</string>
+    <string name="gallery_subtitle">Manna Cafe &amp; Catering — Auckland</string>
 
     <!-- Contact -->
-    <string name="contact_title">About &amp; Contact</string>
-    <string name="ais_phone">+64 9 815 3589</string>
+    <string name="contact_title">Contact &amp; Hours</string>
+    <string name="ais_phone">+64 210 101 2423</string>
     <string name="ais_email">cafeteria@ais.ac.nz</string>
     <string name="ais_website">www.ais.ac.nz</string>
     <string name="ais_address">28A Linwood Avenue, Mount Albert, Auckland 1025</string>
@@ -82,12 +82,12 @@
     <string name="email">Email</string>
     <string name="open_web">Open</string>
     <string name="opening_hours">Opening Hours</string>
-    <string name="hours_weekday">Mon – Fri: 7:30 AM – 4:00 PM</string>
-    <string name="hours_saturday">Saturday: 8:00 AM – 2:00 PM</string>
-    <string name="hours_sunday">Sunday: Closed</string>
+    <string name="hours_weekday">Mon – Fri: 8:00 AM – 2:30 PM</string>
+    <string name="hours_saturday">Saturday: 9:00 AM – 3:00 PM</string>
+    <string name="hours_sunday">Sunday: 9:00 AM – 3:00 PM</string>
     <string name="open_in_maps">Open in Maps</string>
 
     <!-- Misc -->
     <string name="incl_gst">incl. 15% GST</string>
-    <string name="app_version">AIS Cafeteria POS v1.0 · SOFT708</string>
+    <string name="app_version">Manna Cafe &amp; Catering POS v1.0 · SOFT708</string>
 </resources>

@@ -32,7 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="#1022"
-                    android:textColor="@color/ais_red"
+                    android:textColor="#C9A84C"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:text="View Details"
-                android:textColor="@color/ais_red"
+                android:textColor="#C9A84C"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:gravity="center"
