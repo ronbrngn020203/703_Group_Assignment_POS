@@ -263,6 +263,72 @@
 
                     </GridLayout>
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btnUpdates"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="16dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp"
+                        app:cardBackgroundColor="@color/white">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="16dp">
+
+                            <LinearLayout
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@drawable/bg_icon_red"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@drawable/ic_web"
+                                    android:tint="@color/ais_red"
+                                    android:contentDescription="AIS Updates" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="AIS Updates"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:text="Latest AIS news and events feed"
+                                    android:textColor="@color/text_secondary"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Open"
+                                android:textColor="@color/ais_red"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
                     <View android:layout_width="match_parent" android:layout_height="16dp" />
 
                 </LinearLayout>
@@ -417,6 +483,13 @@
                         <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_phone" android:tint="@color/ais_red" android:contentDescription="Contact"/>
                     </LinearLayout>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Contact" android:textColor="@color/text_primary" android:textSize="15sp" android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/drawerUpdates" android:layout_width="match_parent" android:layout_height="56dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:background="?attr/selectableItemBackground">
+                    <LinearLayout android:layout_width="36dp" android:layout_height="36dp" android:background="@drawable/bg_icon_red" android:gravity="center">
+                        <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_web" android:tint="@color/ais_red" android:contentDescription="AIS Updates"/>
+                    </LinearLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AIS Updates" android:textColor="@color/text_primary" android:textSize="15sp" android:layout_marginStart="16dp" />
                 </LinearLayout>
 
                 <!-- Divider -->

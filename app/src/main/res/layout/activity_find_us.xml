@@ -57,13 +57,12 @@
 
                 <Button
                     android:id="@+id/btnOpenMaps"
+                    style="@style/AIS.Button.Red"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
                     android:text="Open in Maps"
-                    android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    android:background="@drawable/bg_btn_red_rounded"
                     android:layout_gravity="bottom|end"
                     android:layout_margin="10dp"
                     android:paddingStart="12dp"
@@ -176,24 +175,22 @@
 
                             <Button
                                 android:id="@+id/btnMyLocation"
+                                style="@style/AIS.Button.Red"
                                 android:layout_width="wrap_content"
                                 android:layout_height="36dp"
                                 android:text="My Location"
-                                android:textColor="@color/white"
                                 android:textSize="12sp"
-                                android:background="@drawable/bg_btn_red_rounded"
                                 android:paddingStart="14dp"
                                 android:paddingEnd="14dp" />
 
                             <Button
                                 android:id="@+id/btnDirections"
+                                style="@style/AIS.Button.Outline"
                                 android:layout_width="wrap_content"
                                 android:layout_height="36dp"
                                 android:layout_marginStart="8dp"
                                 android:text="Directions"
-                                android:textColor="@color/ais_red"
                                 android:textSize="12sp"
-                                android:background="@drawable/bg_btn_outline_red"
                                 android:paddingStart="14dp"
                                 android:paddingEnd="14dp" />
                         </LinearLayout>

@@ -40,6 +40,10 @@
         "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_find_us.xml"
     },
     {
+        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/activity_news_feed.xml",
+        "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_news_feed.xml"
+    },
+    {
         "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/item_gallery.xml",
         "source": "com.ais.cafeteria.pos.app-main-40:/layout/item_gallery.xml"
     },
@@ -62,6 +66,10 @@
     {
         "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/activity_payment.xml",
         "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_payment.xml"
+    },
+    {
+        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/item_news_feed.xml",
+        "source": "com.ais.cafeteria.pos.app-main-40:/layout/item_news_feed.xml"
     },
     {
         "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/dialog_gallery_item.xml",

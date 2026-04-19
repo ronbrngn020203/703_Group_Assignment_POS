@@ -76,6 +76,10 @@
         "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_payment.xml"
     },
     {
+        "merged": "com.ais.cafeteria.pos.app-debug-38:/layout_activity_news_feed.xml.flat",
+        "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_news_feed.xml"
+    },
+    {
         "merged": "com.ais.cafeteria.pos.app-debug-38:/drawable_ic_home.xml.flat",
         "source": "com.ais.cafeteria.pos.app-main-40:/drawable/ic_home.xml"
     },
@@ -214,5 +218,9 @@
     {
         "merged": "com.ais.cafeteria.pos.app-debug-38:/drawable_bg_card_white.xml.flat",
         "source": "com.ais.cafeteria.pos.app-main-40:/drawable/bg_card_white.xml"
+    },
+    {
+        "merged": "com.ais.cafeteria.pos.app-debug-38:/layout_item_news_feed.xml.flat",
+        "source": "com.ais.cafeteria.pos.app-main-40:/layout/item_news_feed.xml"
     }
 ]

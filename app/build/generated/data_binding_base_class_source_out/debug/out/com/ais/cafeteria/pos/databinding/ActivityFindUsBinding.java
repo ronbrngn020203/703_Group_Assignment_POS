@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
@@ -24,13 +25,30 @@ public final class ActivityFindUsBinding implements ViewBinding {
   public final ImageView btnBack;
 
   @NonNull
+  public final Button btnDirections;
+
+  @NonNull
+  public final Button btnMyLocation;
+
+  @NonNull
   public final Button btnOpenMaps;
 
+  @NonNull
+  public final TextView tvDistance;
+
+  @NonNull
+  public final TextView tvGpsStatus;
+
   private ActivityFindUsBinding(@NonNull LinearLayout rootView, @NonNull ImageView btnBack,
-      @NonNull Button btnOpenMaps) {
+      @NonNull Button btnDirections, @NonNull Button btnMyLocation, @NonNull Button btnOpenMaps,
+      @NonNull TextView tvDistance, @NonNull TextView tvGpsStatus) {
     this.rootView = rootView;
     this.btnBack = btnBack;
+    this.btnDirections = btnDirections;
+    this.btnMyLocation = btnMyLocation;
     this.btnOpenMaps = btnOpenMaps;
+    this.tvDistance = tvDistance;
+    this.tvGpsStatus = tvGpsStatus;
   }
 
   @Override
@@ -66,13 +84,38 @@ public final class ActivityFindUsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnDirections;
+      Button btnDirections = ViewBindings.findChildViewById(rootView, id);
+      if (btnDirections == null) {
+        break missingId;
+      }
+
+      id = R.id.btnMyLocation;
+      Button btnMyLocation = ViewBindings.findChildViewById(rootView, id);
+      if (btnMyLocation == null) {
+        break missingId;
+      }
+
       id = R.id.btnOpenMaps;
       Button btnOpenMaps = ViewBindings.findChildViewById(rootView, id);
       if (btnOpenMaps == null) {
         break missingId;
       }
 
-      return new ActivityFindUsBinding((LinearLayout) rootView, btnBack, btnOpenMaps);
+      id = R.id.tvDistance;
+      TextView tvDistance = ViewBindings.findChildViewById(rootView, id);
+      if (tvDistance == null) {
+        break missingId;
+      }
+
+      id = R.id.tvGpsStatus;
+      TextView tvGpsStatus = ViewBindings.findChildViewById(rootView, id);
+      if (tvGpsStatus == null) {
+        break missingId;
+      }
+
+      return new ActivityFindUsBinding((LinearLayout) rootView, btnBack, btnDirections,
+          btnMyLocation, btnOpenMaps, tvDistance, tvGpsStatus);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

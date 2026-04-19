@@ -50,6 +50,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final Button btnOrderNow;
 
   @NonNull
+  public final CardView btnUpdates;
+
+  @NonNull
   public final CardView btnViewCart;
 
   @NonNull
@@ -83,6 +86,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final LinearLayout drawerOrders;
 
   @NonNull
+  public final LinearLayout drawerUpdates;
+
+  @NonNull
   public final FloatingActionButton fab;
 
   @NonNull
@@ -110,12 +116,13 @@ public final class ActivityMainBinding implements ViewBinding {
       @NonNull BottomNavigationView bottomNav, @NonNull FrameLayout btnCart,
       @NonNull CardView btnContact, @NonNull CardView btnFindUs, @NonNull CardView btnGallery,
       @NonNull LinearLayout btnHamburger, @NonNull CardView btnOrderHistory,
-      @NonNull Button btnOrderNow, @NonNull CardView btnViewCart, @NonNull CardView btnViewMenu,
-      @NonNull LinearLayout drawerCart, @NonNull LinearLayout drawerContact,
-      @NonNull LinearLayout drawerFindUs, @NonNull LinearLayout drawerGallery,
-      @NonNull LinearLayout drawerHome, @NonNull DrawerLayout drawerLayout,
-      @NonNull LinearLayout drawerLogout, @NonNull LinearLayout drawerMenu,
-      @NonNull LinearLayout drawerOrders, @NonNull FloatingActionButton fab,
+      @NonNull Button btnOrderNow, @NonNull CardView btnUpdates, @NonNull CardView btnViewCart,
+      @NonNull CardView btnViewMenu, @NonNull LinearLayout drawerCart,
+      @NonNull LinearLayout drawerContact, @NonNull LinearLayout drawerFindUs,
+      @NonNull LinearLayout drawerGallery, @NonNull LinearLayout drawerHome,
+      @NonNull DrawerLayout drawerLayout, @NonNull LinearLayout drawerLogout,
+      @NonNull LinearLayout drawerMenu, @NonNull LinearLayout drawerOrders,
+      @NonNull LinearLayout drawerUpdates, @NonNull FloatingActionButton fab,
       @NonNull LinearLayout navDrawer, @NonNull LinearLayout statusPill,
       @NonNull TextView tvCartBadge, @NonNull TextView tvDate, @NonNull TextView tvDrawerAvatar,
       @NonNull TextView tvDrawerName, @NonNull TextView tvGreeting) {
@@ -128,6 +135,7 @@ public final class ActivityMainBinding implements ViewBinding {
     this.btnHamburger = btnHamburger;
     this.btnOrderHistory = btnOrderHistory;
     this.btnOrderNow = btnOrderNow;
+    this.btnUpdates = btnUpdates;
     this.btnViewCart = btnViewCart;
     this.btnViewMenu = btnViewMenu;
     this.drawerCart = drawerCart;
@@ -139,6 +147,7 @@ public final class ActivityMainBinding implements ViewBinding {
     this.drawerLogout = drawerLogout;
     this.drawerMenu = drawerMenu;
     this.drawerOrders = drawerOrders;
+    this.drawerUpdates = drawerUpdates;
     this.fab = fab;
     this.navDrawer = navDrawer;
     this.statusPill = statusPill;
@@ -224,6 +233,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnUpdates;
+      CardView btnUpdates = ViewBindings.findChildViewById(rootView, id);
+      if (btnUpdates == null) {
+        break missingId;
+      }
+
       id = R.id.btnViewCart;
       CardView btnViewCart = ViewBindings.findChildViewById(rootView, id);
       if (btnViewCart == null) {
@@ -286,6 +301,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.drawerUpdates;
+      LinearLayout drawerUpdates = ViewBindings.findChildViewById(rootView, id);
+      if (drawerUpdates == null) {
+        break missingId;
+      }
+
       id = R.id.fab;
       FloatingActionButton fab = ViewBindings.findChildViewById(rootView, id);
       if (fab == null) {
@@ -335,10 +356,10 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       return new ActivityMainBinding((DrawerLayout) rootView, bottomNav, btnCart, btnContact,
-          btnFindUs, btnGallery, btnHamburger, btnOrderHistory, btnOrderNow, btnViewCart,
-          btnViewMenu, drawerCart, drawerContact, drawerFindUs, drawerGallery, drawerHome,
-          drawerLayout, drawerLogout, drawerMenu, drawerOrders, fab, navDrawer, statusPill,
-          tvCartBadge, tvDate, tvDrawerAvatar, tvDrawerName, tvGreeting);
+          btnFindUs, btnGallery, btnHamburger, btnOrderHistory, btnOrderNow, btnUpdates,
+          btnViewCart, btnViewMenu, drawerCart, drawerContact, drawerFindUs, drawerGallery,
+          drawerHome, drawerLayout, drawerLogout, drawerMenu, drawerOrders, drawerUpdates, fab,
+          navDrawer, statusPill, tvCartBadge, tvDate, tvDrawerAvatar, tvDrawerName, tvGreeting);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

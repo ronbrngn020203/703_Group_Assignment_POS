@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,7 +21,11 @@ import androidx.core.content.ContextCompat;
 
 import com.ais.cafeteria.pos.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.Priority;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -27,6 +34,9 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.CancellationTokenSource;
+
+import java.util.Locale;
 
 public class FindUsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -144,23 +154,74 @@ public class FindUsActivity extends AppCompatActivity implements OnMapReadyCallb
 
     @SuppressLint("MissingPermission")
     private void fetchCurrentLocation(boolean moveCameraToUser) {
+        CancellationTokenSource cancel = new CancellationTokenSource();
+        fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, cancel.getToken())
+                .addOnSuccessListener(this, location -> {
+                    if (location != null) {
+                        applyUserLocation(location, moveCameraToUser);
+                        return;
+                    }
+                    fetchCachedOrUpdates(moveCameraToUser);
+                })
+                .addOnFailureListener(e -> fetchCachedOrUpdates(moveCameraToUser));
+    }
+
+    private void applyUserLocation(Location location, boolean moveCameraToUser) {
+        userLocation = new LatLng(location.getLatitude(), location.getLongitude());
+        updateMapForUser(moveCameraToUser);
+        updateDistanceInfo(location);
+    }
+
+    @SuppressLint("MissingPermission")
+    private void fetchCachedOrUpdates(boolean moveCameraToUser) {
         fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
-            if (location == null) {
-                tvGpsStatus.setText("GPS is available, but the device has not reported a location yet.");
-                tvDistance.setText("Distance unavailable");
-                if (googleMap != null) {
-                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(aisLocation, 17f));
-                }
+            if (location != null) {
+                applyUserLocation(location, moveCameraToUser);
                 return;
             }
-
-            userLocation = new LatLng(location.getLatitude(), location.getLongitude());
-            updateMapForUser(moveCameraToUser);
-            updateDistanceInfo(location);
+            tvGpsStatus.setText("Getting a fresh GPS fix…");
+            requestOneFreshLocation(moveCameraToUser);
         }).addOnFailureListener(e -> {
             tvGpsStatus.setText("Unable to read the current device location.");
             tvDistance.setText("Distance unavailable");
         });
+    }
+
+    /**
+     * {@link FusedLocationProviderClient#getLastLocation()} is often null until a provider
+     * has delivered a fix; one active update usually resolves that on real devices.
+     */
+    @SuppressLint("MissingPermission")
+    private void requestOneFreshLocation(boolean moveCameraToUser) {
+        LocationRequest request = new LocationRequest.Builder(
+                Priority.PRIORITY_HIGH_ACCURACY,
+                10_000L
+        ).setMaxUpdates(1).build();
+
+        final LocationCallback[] holder = new LocationCallback[1];
+        holder[0] = new LocationCallback() {
+            @Override
+            public void onLocationResult(@NonNull LocationResult result) {
+                fusedLocationClient.removeLocationUpdates(holder[0]);
+                Location location = result.getLastLocation();
+                if (location == null) {
+                    tvGpsStatus.setText("GPS is available, but the device has not reported a location yet.");
+                    tvDistance.setText("Distance unavailable");
+                    if (googleMap != null) {
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(aisLocation, 17f));
+                    }
+                    return;
+                }
+                userLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                updateMapForUser(moveCameraToUser);
+                updateDistanceInfo(location);
+            }
+        };
+
+        fusedLocationClient.requestLocationUpdates(request, holder[0], Looper.getMainLooper());
+
+        new Handler(Looper.getMainLooper()).postDelayed(() ->
+                fusedLocationClient.removeLocationUpdates(holder[0]), 25_000L);
     }
 
     private void updateMapForUser(boolean moveCameraToUser) {
@@ -202,9 +263,25 @@ public class FindUsActivity extends AppCompatActivity implements OnMapReadyCallb
         );
 
         float distanceKm = results[0] / 1000f;
-        tvGpsStatus.setText("Your GPS location is active.");
-        tvDistance.setText(String.format(java.util.Locale.getDefault(),
+        StringBuilder status = new StringBuilder("Your GPS location is active.");
+        if (currentLocation.hasAccuracy()) {
+            status.append(String.format(Locale.getDefault(), " (accuracy ±%.0f m)", currentLocation.getAccuracy()));
+        }
+        if (distanceKm > 2000f || isProbablyEmulator()) {
+            status.append("\nIf this distance looks wrong: on the Android emulator, open Extended Controls → Location and set a point in Auckland. On a real phone, turn on High accuracy location in system settings.");
+        }
+        tvGpsStatus.setText(status.toString());
+        tvDistance.setText(String.format(Locale.getDefault(),
                 "About %.2f km from AIS Cafeteria", distanceKm));
+    }
+
+    private static boolean isProbablyEmulator() {
+        return Build.FINGERPRINT.startsWith("generic")
+                || Build.FINGERPRINT.toLowerCase(Locale.US).contains("emulator")
+                || Build.MODEL.contains("Emulator")
+                || Build.MANUFACTURER.contains("Genymotion")
+                || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"))
+                || "google_sdk".equals(Build.PRODUCT);
     }
 
     @Override

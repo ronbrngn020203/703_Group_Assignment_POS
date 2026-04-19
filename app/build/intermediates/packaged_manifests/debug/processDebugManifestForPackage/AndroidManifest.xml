@@ -34,6 +34,7 @@
     <uses-permission android:name="com.ais.cafeteria.pos.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
+        android:name="com.ais.cafeteria.pos.CafeteriaApplication"
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
@@ -102,6 +103,9 @@
         <!-- Contact/About Activity -->
         <activity
             android:name="com.ais.cafeteria.pos.activities.ContactActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.ais.cafeteria.pos.activities.NewsFeedActivity"
             android:exported="false" />
 
         <!-- Google Maps API Key -->
