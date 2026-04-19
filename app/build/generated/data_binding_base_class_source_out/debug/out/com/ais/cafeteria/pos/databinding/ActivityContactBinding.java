@@ -24,6 +24,9 @@ public final class ActivityContactBinding implements ViewBinding {
   public final ImageView btnBack;
 
   @NonNull
+  public final Button btnCalendar;
+
+  @NonNull
   public final Button btnDial;
 
   @NonNull
@@ -33,9 +36,11 @@ public final class ActivityContactBinding implements ViewBinding {
   public final Button btnWebsite;
 
   private ActivityContactBinding(@NonNull LinearLayout rootView, @NonNull ImageView btnBack,
-      @NonNull Button btnDial, @NonNull Button btnEmail, @NonNull Button btnWebsite) {
+      @NonNull Button btnCalendar, @NonNull Button btnDial, @NonNull Button btnEmail,
+      @NonNull Button btnWebsite) {
     this.rootView = rootView;
     this.btnBack = btnBack;
+    this.btnCalendar = btnCalendar;
     this.btnDial = btnDial;
     this.btnEmail = btnEmail;
     this.btnWebsite = btnWebsite;
@@ -74,6 +79,12 @@ public final class ActivityContactBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnCalendar;
+      Button btnCalendar = ViewBindings.findChildViewById(rootView, id);
+      if (btnCalendar == null) {
+        break missingId;
+      }
+
       id = R.id.btnDial;
       Button btnDial = ViewBindings.findChildViewById(rootView, id);
       if (btnDial == null) {
@@ -92,8 +103,8 @@ public final class ActivityContactBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityContactBinding((LinearLayout) rootView, btnBack, btnDial, btnEmail,
-          btnWebsite);
+      return new ActivityContactBinding((LinearLayout) rootView, btnBack, btnCalendar, btnDial,
+          btnEmail, btnWebsite);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

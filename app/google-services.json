@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "93166560156",
+    "firebase_url": "https://ais-cafeteria-pos-default-rtdb.firebaseio.com",
     "project_id": "ais-cafeteria-pos",
     "storage_bucket": "ais-cafeteria-pos.firebasestorage.app"
   },

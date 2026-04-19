@@ -30,14 +30,6 @@ import com.ais.cafeteria.pos.utils.CartManager;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * MenuActivity  —  Tier 1 (User Interface)
- *
- * Changes for Task 3:
- *  • Menu items are now fetched from the SQLite backend via MenuRepository (Retrofit)
- *  • Search is performed via HTTP web service call (GET /api/menu/search?q=)
- *  • Long-pressing a menu item opens EditMenuItemActivity for editing
- */
 public class MenuActivity extends AppCompatActivity {
 
     private static final int REQUEST_EDIT = 101;
@@ -53,13 +45,10 @@ public class MenuActivity extends AppCompatActivity {
     private ProgressBar   progressBar;
     private TextView      tvEmptyState;
 
-    private List<MenuItem> allItems       = new ArrayList<>();
-    private String         selectedCategory = "All";
+    private List<MenuItem> allItems = new ArrayList<>();
+    private String selectedCategory = "All";
 
-    // ── Data Access Layer ─────────────────────────────────────
     private final MenuRepository menuRepository = new MenuRepository();
-
-    // Debounce handler — prevents firing an API call on every keystroke
     private final Handler searchHandler = new Handler(Looper.getMainLooper());
     private Runnable searchRunnable;
     private static final long SEARCH_DEBOUNCE_MS = 400;
@@ -74,8 +63,11 @@ public class MenuActivity extends AppCompatActivity {
         setupSearch();
         setupNavigation();
 
-        // Fetch menu items from SQLite via HTTP web service
-        loadMenuFromServer();
+        // ✅ Load local items INSTANTLY first
+        loadLocalMenuInstantly();
+
+        // Then try to refresh from server in background
+        refreshFromServerInBackground();
     }
 
     @Override
@@ -85,21 +77,17 @@ public class MenuActivity extends AppCompatActivity {
         updateCartBar();
     }
 
-    // ── Bind Views ────────────────────────────────────────────
-
     private void bindViews() {
-        rvMenu         = findViewById(R.id.rvMenu);
-        etSearch       = findViewById(R.id.etSearch);
-        categoryChips  = findViewById(R.id.categoryChips);
-        cartBar        = findViewById(R.id.cartBar);
-        btnViewCart    = findViewById(R.id.btnViewCart);
-        tvCartBadge    = findViewById(R.id.tvCartBadge);
-        btnBack        = findViewById(R.id.btnBack);
-        progressBar    = findViewById(R.id.progressBar);    // add this to your layout
-        tvEmptyState   = findViewById(R.id.tvEmptyState);  // add this to your layout
+        rvMenu        = findViewById(R.id.rvMenu);
+        etSearch      = findViewById(R.id.etSearch);
+        categoryChips = findViewById(R.id.categoryChips);
+        cartBar       = findViewById(R.id.cartBar);
+        btnViewCart   = findViewById(R.id.btnViewCart);
+        tvCartBadge   = findViewById(R.id.tvCartBadge);
+        btnBack       = findViewById(R.id.btnBack);
+        progressBar   = findViewById(R.id.progressBar);
+        tvEmptyState  = findViewById(R.id.tvEmptyState);
     }
-
-    // ── RecyclerView ──────────────────────────────────────────
 
     private void setupRecyclerView() {
         adapter = new MenuAdapter(allItems, item -> {
@@ -108,7 +96,6 @@ public class MenuActivity extends AppCompatActivity {
             Toast.makeText(this, item.getName() + " added to cart!", Toast.LENGTH_SHORT).show();
         });
 
-        // Long-press on a menu card opens the edit screen
         adapter.setOnItemLongClickListener(item -> {
             Intent intent = new Intent(this, EditMenuItemActivity.class);
             intent.putExtra(EditMenuItemActivity.EXTRA_ITEM_ID,    item.getId());
@@ -124,40 +111,35 @@ public class MenuActivity extends AppCompatActivity {
         rvMenu.setAdapter(adapter);
     }
 
-    // ── Load from Server (Tier 2 → Tier 3) ───────────────────
+    // ✅ Load hardcoded items instantly — no waiting!
+    private void loadLocalMenuInstantly() {
+        allItems = CartManager.getMenuItems();
+        adapter.updateItems(new ArrayList<>(allItems));
+        buildCategoryChips();
+        updateCartBar();
+        showLoading(false);
+    }
 
-    /**
-     * Calls MenuRepository.fetchAllMenuItems() which fires
-     * GET /api/menu → Node.js → SQLite and returns the result.
-     */
-    private void loadMenuFromServer() {
-        showLoading(true);
+    // ✅ Try server in background — silently updates if successful
+    private void refreshFromServerInBackground() {
         menuRepository.fetchAllMenuItems(new MenuRepository.OnMenuLoadedCallback() {
             @Override
             public void onSuccess(List<MenuItem> items) {
-                allItems.clear();
-                allItems.addAll(items);
-                adapter.updateItems(new ArrayList<>(allItems));
-                buildCategoryChips();
-                showLoading(false);
-                updateCartBar();
+                if (items != null && !items.isEmpty()) {
+                    allItems.clear();
+                    allItems.addAll(items);
+                    adapter.updateItems(new ArrayList<>(allItems));
+                    buildCategoryChips();
+                    updateCartBar();
+                }
             }
 
             @Override
             public void onError(String message) {
-                showLoading(false);
-                Toast.makeText(MenuActivity.this,
-                        "⚠ Could not reach server.\n" + message,
-                        Toast.LENGTH_LONG).show();
-                // Fallback: load hardcoded items so app still works
-                allItems = CartManager.getMenuItems();
-                adapter.updateItems(new ArrayList<>(allItems));
-                buildCategoryChips();
+                // Silently ignore — local items already showing
             }
         });
     }
-
-    // ── Search (HTTP web service call) ────────────────────────
 
     private void setupSearch() {
         etSearch.addTextChangedListener(new TextWatcher() {
@@ -166,18 +148,15 @@ public class MenuActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Debounce: wait 400 ms after user stops typing before sending API request
                 if (searchRunnable != null) searchHandler.removeCallbacks(searchRunnable);
                 String query = s.toString().trim();
 
                 if (query.isEmpty()) {
-                    // Show all items from local cache (no API call needed)
                     filterByCategory(allItems);
                     return;
                 }
 
                 searchRunnable = () -> {
-                    // Fire HTTP search request to Node.js → SQLite
                     menuRepository.searchMenuItems(query, new MenuRepository.OnMenuLoadedCallback() {
                         @Override
                         public void onSuccess(List<MenuItem> items) {
@@ -186,7 +165,6 @@ public class MenuActivity extends AppCompatActivity {
 
                         @Override
                         public void onError(String message) {
-                            // Fallback to local filter on network error
                             filterLocallyByQuery(query);
                         }
                     });
@@ -196,7 +174,6 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-    /** Applies category chip filter on top of an already-searched list. */
     private void filterByCategory(List<MenuItem> source) {
         if (selectedCategory.equals("All")) {
             adapter.updateItems(new ArrayList<>(source));
@@ -209,7 +186,6 @@ public class MenuActivity extends AppCompatActivity {
         adapter.updateItems(filtered);
     }
 
-    /** Local fallback filter used when network is unavailable. */
     private void filterLocallyByQuery(String query) {
         List<MenuItem> filtered = new ArrayList<>();
         for (MenuItem item : allItems) {
@@ -220,8 +196,6 @@ public class MenuActivity extends AppCompatActivity {
         }
         filterByCategory(filtered);
     }
-
-    // ── Category Chips ────────────────────────────────────────
 
     private void buildCategoryChips() {
         categoryChips.removeAllViews();
@@ -267,8 +241,6 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    // ── Navigation ────────────────────────────────────────────
-
     private void setupNavigation() {
         btnBack.setOnClickListener(v -> onBackPressed());
         btnViewCart.setOnClickListener(v ->
@@ -281,19 +253,15 @@ public class MenuActivity extends AppCompatActivity {
         updateCartBar();
     }
 
-    // ── After Edit Returns ────────────────────────────────────
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_EDIT && resultCode == RESULT_OK) {
-            // Reload menu from server to reflect the update
-            loadMenuFromServer();
+            loadLocalMenuInstantly();
+            refreshFromServerInBackground();
             Toast.makeText(this, "Menu item updated!", Toast.LENGTH_SHORT).show();
         }
     }
-
-    // ── UI Helpers ────────────────────────────────────────────
 
     private void showLoading(boolean show) {
         if (progressBar  != null) progressBar.setVisibility(show ? View.VISIBLE : View.GONE);

@@ -98,9 +98,6 @@ public final class ActivityMainBinding implements ViewBinding {
   public final TextView tvDate;
 
   @NonNull
-  public final TextView tvDrawerAvatar;
-
-  @NonNull
   public final TextView tvDrawerName;
 
   @NonNull
@@ -117,8 +114,8 @@ public final class ActivityMainBinding implements ViewBinding {
       @NonNull LinearLayout drawerLogout, @NonNull LinearLayout drawerMenu,
       @NonNull LinearLayout drawerOrders, @NonNull FloatingActionButton fab,
       @NonNull LinearLayout navDrawer, @NonNull LinearLayout statusPill,
-      @NonNull TextView tvCartBadge, @NonNull TextView tvDate, @NonNull TextView tvDrawerAvatar,
-      @NonNull TextView tvDrawerName, @NonNull TextView tvGreeting) {
+      @NonNull TextView tvCartBadge, @NonNull TextView tvDate, @NonNull TextView tvDrawerName,
+      @NonNull TextView tvGreeting) {
     this.rootView = rootView;
     this.bottomNav = bottomNav;
     this.btnCart = btnCart;
@@ -144,7 +141,6 @@ public final class ActivityMainBinding implements ViewBinding {
     this.statusPill = statusPill;
     this.tvCartBadge = tvCartBadge;
     this.tvDate = tvDate;
-    this.tvDrawerAvatar = tvDrawerAvatar;
     this.tvDrawerName = tvDrawerName;
     this.tvGreeting = tvGreeting;
   }
@@ -316,12 +312,6 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tvDrawerAvatar;
-      TextView tvDrawerAvatar = ViewBindings.findChildViewById(rootView, id);
-      if (tvDrawerAvatar == null) {
-        break missingId;
-      }
-
       id = R.id.tvDrawerName;
       TextView tvDrawerName = ViewBindings.findChildViewById(rootView, id);
       if (tvDrawerName == null) {
@@ -338,7 +328,7 @@ public final class ActivityMainBinding implements ViewBinding {
           btnFindUs, btnGallery, btnHamburger, btnOrderHistory, btnOrderNow, btnViewCart,
           btnViewMenu, drawerCart, drawerContact, drawerFindUs, drawerGallery, drawerHome,
           drawerLayout, drawerLogout, drawerMenu, drawerOrders, fab, navDrawer, statusPill,
-          tvCartBadge, tvDate, tvDrawerAvatar, tvDrawerName, tvGreeting);
+          tvCartBadge, tvDate, tvDrawerName, tvGreeting);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

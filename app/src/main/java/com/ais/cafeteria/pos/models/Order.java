@@ -21,11 +21,10 @@ public class Order {
         this.items         = items;
         this.total         = total;
         this.paymentMethod = paymentMethod;
-        this.status        = "Completed";
+        this.status        = paymentMethod.equals("Cash") ? "Pending" : "Completed";
         this.note          = "";
     }
 
-    // ── Getters ───────────────────────────────────────────────
     public String         getOrderId()       { return orderId; }
     public String         getDate()          { return date; }
     public List<CartItem> getItems()         { return items; }
@@ -34,11 +33,9 @@ public class Order {
     public String         getStatus()        { return status; }
     public String         getNote()          { return note; }
 
-    // ── Setters ───────────────────────────────────────────────
     public void setNote(String note)     { this.note   = note; }
     public void setStatus(String status) { this.status = status; }
 
-    // ── Helper ────────────────────────────────────────────────
     public int getItemCount() {
         int count = 0;
         if (items != null) for (CartItem item : items) count += item.getQuantity();

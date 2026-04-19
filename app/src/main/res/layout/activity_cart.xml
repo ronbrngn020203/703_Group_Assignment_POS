@@ -10,32 +10,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_red_gradient"
+        android:background="#FFFFFF"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:elevation="4dp">
 
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:src="@drawable/ic_back"
-            android:tint="@color/white"
-            android:background="@drawable/bg_card_translucent"
+            android:tint="#C9A84C"
+            android:background="@drawable/bg_icon_red"
             android:padding="6dp"
             android:contentDescription="Back" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="36dp"
+            android:src="@drawable/manna_logo"
+            android:scaleType="fitCenter"
+            android:contentDescription="Manna Logo"
             android:layout_weight="1"
-            android:text="Your Cart"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginStart="12dp" />
+            android:layout_marginStart="12dp"/>
 
     </LinearLayout>
+
+    <!-- Gold divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#C9A84C"/>
 
     <!-- Cart items RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
@@ -75,7 +81,7 @@
             android:layout_height="44dp"
             android:text="Browse Menu"
             android:textColor="@color/white"
-            android:background="@drawable/bg_btn_red_rounded"
+            android:backgroundTint="#C9A84C"
             android:layout_marginTop="16dp"
             android:paddingStart="24dp"
             android:paddingEnd="24dp" />
@@ -136,7 +142,7 @@
         </LinearLayout>
 
         <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:background="@color/divider"
+            android:background="#C9A84C"
             android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginBottom="8dp" />
 
         <LinearLayout
@@ -151,7 +157,7 @@
                 android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold" />
             <TextView android:id="@+id/tvTotal" android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:text="$0.00"
-                android:textColor="@color/ais_red" android:textStyle="bold" android:textSize="16sp" />
+                android:textColor="#C9A84C" android:textStyle="bold" android:textSize="16sp" />
         </LinearLayout>
 
         <Button
@@ -162,7 +168,7 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:background="@drawable/bg_btn_red_rounded"
+            android:backgroundTint="#C9A84C"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="12dp" />

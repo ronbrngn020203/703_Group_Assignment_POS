@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_light"
+    android:background="#FFFFFF"
     android:fillViewport="true">
 
     <LinearLayout
@@ -11,38 +11,67 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Red Header -->
+        <!-- White Header with Manna Logo -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:background="@drawable/bg_red_gradient"
+            android:layout_height="260dp"
+            android:background="#FFFFFF"
             android:orientation="vertical"
             android:gravity="center"
             android:padding="24dp">
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:src="@drawable/ic_ais_logo_splash"
-                android:contentDescription="AIS Logo" />
+            <!-- Gold circle decoration top right -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Staff Login"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginTop="12dp" />
+                <View
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/circle_gold_faded"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="-40dp"
+                    android:layout_marginEnd="-40dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AIS Cafeteria POS System"
-                android:textColor="#CCFFFFFF"
-                android:textSize="13sp"
-                android:layout_marginTop="4dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
+                    <ImageView
+                        android:layout_width="220dp"
+                        android:layout_height="130dp"
+                        android:src="@drawable/manna_logo"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="Manna Logo" />
+
+                    <!-- Gold divider -->
+                    <View
+                        android:layout_width="60dp"
+                        android:layout_height="2dp"
+                        android:background="#C9A84C"
+                        android:layout_marginTop="16dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Staff Login"
+                        android:textColor="#1A1A1A"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Auckland Institute of Studies"
+                        android:textColor="#888888"
+                        android:textSize="13sp"
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
+            </FrameLayout>
         </LinearLayout>
 
         <!-- Form Card -->
@@ -114,7 +143,7 @@
                     android:text="Remember Me"
                     android:textSize="13sp"
                     android:textColor="@color/text_secondary"
-                    android:buttonTint="@color/ais_red"
+                    android:buttonTint="#C9A84C"
                     android:layout_marginBottom="24dp" />
 
                 <!-- Login Button -->
@@ -126,7 +155,7 @@
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:background="@drawable/bg_btn_red_rounded"
+                    android:backgroundTint="#C9A84C"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Guest Login Button -->
@@ -135,14 +164,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:text="Continue as Guest"
-                    android:textColor="#CC0000"
+                    android:textColor="#C9A84C"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:backgroundTint="#FFFFFF"
-                    android:strokeColor="#CC0000"
-                    android:strokeWidth="2"
                     android:layout_marginBottom="16dp"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="#C9A84C"
+                    app:strokeWidth="2dp"/>
 
                 <!-- Forgot password -->
                 <TextView

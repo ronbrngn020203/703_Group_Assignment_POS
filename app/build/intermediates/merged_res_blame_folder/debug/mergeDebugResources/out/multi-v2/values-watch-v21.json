@@ -4,7 +4,7 @@
             "outputFile": "com.ais.cafeteria.pos.app-mergeDebugResources-36:/values-watch-v21/values-watch-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\admin\\.gradle\\caches\\transforms-4\\a890844a47eaafceac9fe1a9cd86e83e\\transformed\\appcompat-1.6.1\\res\\values-watch-v21\\values-watch-v21.xml",
+                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-4\\a890844a47eaafceac9fe1a9cd86e83e\\transformed\\appcompat-1.6.1\\res\\values-watch-v21\\values-watch-v21.xml",
                     "from": {
                         "startLines": "2,6,10",
                         "startColumns": "4,4,4",

@@ -24,21 +24,19 @@ public class CartManager {
     private int orderCounter = 1021;
     private Order lastOrder;
     private SharedPreferences prefs;
+    private String pendingNote = ""; // ✅ stores note from cart
 
-    private static final String PREF_NAME    = "AIS_CART_PREFS";
-    private static final String KEY_HISTORY  = "order_history";
-    private static final String KEY_COUNTER  = "order_counter";
+    private static final String PREF_NAME   = "AIS_CART_PREFS";
+    private static final String KEY_HISTORY = "order_history";
+    private static final String KEY_COUNTER = "order_counter";
 
     private CartManager() {}
 
     public static CartManager getInstance() {
-        if (instance == null) {
-            instance = new CartManager();
-        }
+        if (instance == null) instance = new CartManager();
         return instance;
     }
 
-    // Call this once from Application or MainActivity
     public void init(Context context) {
         if (prefs != null) return;
         prefs = context.getApplicationContext()
@@ -47,7 +45,16 @@ public class CartManager {
         loadOrderHistory();
     }
 
-    // ── Save & Load ────────────────────────────────────────────
+    // ✅ Set note from CartActivity
+    public void setOrderNote(String note) {
+        this.pendingNote = note != null ? note : "";
+    }
+
+    public String getOrderNote() {
+        return pendingNote;
+    }
+
+    // ── Save & Load ───────────────────────────────────────────
 
     private void saveOrderHistory() {
         try {
@@ -61,7 +68,6 @@ public class CartManager {
                 obj.put("status",        order.getStatus());
                 obj.put("note",          order.getNote() != null ? order.getNote() : "");
 
-                // Save items
                 JSONArray itemsArray = new JSONArray();
                 for (CartItem item : order.getItems()) {
                     JSONObject itemObj = new JSONObject();
@@ -88,7 +94,6 @@ public class CartManager {
         try {
             String json = prefs.getString(KEY_HISTORY, null);
             if (json == null) {
-                // First time — add sample history
                 orderHistory.add(new Order("#1020", "10 Mar 2026", new ArrayList<>(), 14.00, "Card"));
                 orderHistory.add(new Order("#1021", "11 Mar 2026", new ArrayList<>(), 22.50, "Cash"));
                 return;
@@ -98,7 +103,6 @@ public class CartManager {
             for (int i = 0; i < array.length(); i++) {
                 JSONObject obj = array.getJSONObject(i);
 
-                // Load items
                 JSONArray itemsArray = obj.getJSONArray("items");
                 List<CartItem> items = new ArrayList<>();
                 for (int j = 0; j < itemsArray.length(); j++) {
@@ -129,7 +133,7 @@ public class CartManager {
         }
     }
 
-    // ── Cart Operations ────────────────────────────────────────
+    // ── Cart Operations ───────────────────────────────────────
 
     public void addItem(MenuItem menuItem) {
         for (CartItem item : cartItems) {
@@ -159,7 +163,10 @@ public class CartManager {
         }
     }
 
-    public void clearCart() { cartItems.clear(); }
+    public void clearCart() {
+        cartItems.clear();
+        pendingNote = ""; // ✅ clear note after order
+    }
 
     public boolean isInCart(int menuItemId) {
         for (CartItem item : cartItems) {
@@ -192,10 +199,10 @@ public class CartManager {
     public double getGst()   { return getSubtotal() * 0.15; }
     public double getTotal() { return getSubtotal() + getGst(); }
 
-    // ── Order Operations ───────────────────────────────────────
+    // ── Order Operations ──────────────────────────────────────
 
     public Order placeOrder(String paymentMethod) {
-        return placeOrder(paymentMethod, "");
+        return placeOrder(paymentMethod, pendingNote); // ✅ use pending note
     }
 
     public Order placeOrder(String paymentMethod, String note) {
@@ -211,27 +218,27 @@ public class CartManager {
         return order;
     }
 
-    public Order getLastOrder()        { return lastOrder; }
+    public Order getLastOrder()          { return lastOrder; }
     public List<Order> getOrderHistory() { return orderHistory; }
 
-    // ── Menu Data ──────────────────────────────────────────────
+    // ── Menu Data ─────────────────────────────────────────────
 
     public static List<MenuItem> getMenuItems() {
         List<MenuItem> items = new ArrayList<>();
-        items.add(new MenuItem(1,  "Butter Chicken Rice",  "Creamy butter chicken with steamed rice",         12.00, "Mains",    "🍛"));
-        items.add(new MenuItem(2,  "Chicken Rice Bowl",    "Grilled chicken, steamed rice, seasonal veggies",  8.50, "Mains",    "🍱"));
-        items.add(new MenuItem(3,  "Beef Burger",          "100% beef patty, lettuce, tomato, cheese",         9.00, "Mains",    "🍔"));
-        items.add(new MenuItem(4,  "Veggie Wrap",          "Fresh vegetables, hummus, whole wheat wrap",        7.50, "Mains",    "🌯"));
-        items.add(new MenuItem(5,  "Fish & Chips",         "Battered fish fillet, golden chips, tartar sauce", 10.00, "Mains",    "🐟"));
-        items.add(new MenuItem(6,  "Caesar Salad",         "Romaine, croutons, parmesan, Caesar dressing",      7.00, "Salads",   "🥗"));
-        items.add(new MenuItem(7,  "Garden Salad",         "Mixed greens, cherry tomatoes, cucumber",           6.00, "Salads",   "🥬"));
-        items.add(new MenuItem(8,  "Cheese Pizza Slice",   "Mozzarella, tomato sauce, fresh basil",             5.00, "Snacks",   "🍕"));
-        items.add(new MenuItem(9,  "Spring Rolls (3pc)",   "Crispy fried rolls with sweet chilli sauce",        5.50, "Snacks",   "🥟"));
-        items.add(new MenuItem(10, "Latte",                "Double shot espresso with steamed milk",            4.50, "Drinks",   "☕"));
-        items.add(new MenuItem(11, "Smoothie",             "Mixed berry, banana, yoghurt blend",                5.50, "Drinks",   "🥤"));
-        items.add(new MenuItem(12, "Water Bottle",         "500ml chilled mineral water",                       2.00, "Drinks",   "💧"));
-        items.add(new MenuItem(13, "Chocolate Muffin",     "Rich double chocolate muffin",                      3.50, "Desserts", "🧁"));
-        items.add(new MenuItem(14, "Fruit Cup",            "Seasonal fresh fruit medley",                       4.00, "Desserts", "🍓"));
+        items.add(new MenuItem(1,  "Butter Chicken Rice",  "Creamy butter chicken with steamed rice",          12.00, "Mains",    "🍛"));
+        items.add(new MenuItem(2,  "Chicken Rice Bowl",    "Grilled chicken, steamed rice, seasonal veggies",   8.50, "Mains",    "🍱"));
+        items.add(new MenuItem(3,  "Beef Burger",          "100% beef patty, lettuce, tomato, cheese",          9.00, "Mains",    "🍔"));
+        items.add(new MenuItem(4,  "Veggie Wrap",          "Fresh vegetables, hummus, whole wheat wrap",         7.50, "Mains",    "🌯"));
+        items.add(new MenuItem(5,  "Fish & Chips",         "Battered fish fillet, golden chips, tartar sauce",  10.00, "Mains",   "🐟"));
+        items.add(new MenuItem(6,  "Caesar Salad",         "Romaine, croutons, parmesan, Caesar dressing",       7.00, "Salads",  "🥗"));
+        items.add(new MenuItem(7,  "Garden Salad",         "Mixed greens, cherry tomatoes, cucumber",            6.00, "Salads",  "🥬"));
+        items.add(new MenuItem(8,  "Cheese Pizza Slice",   "Mozzarella, tomato sauce, fresh basil",              5.00, "Snacks",  "🍕"));
+        items.add(new MenuItem(9,  "Spring Rolls (3pc)",   "Crispy fried rolls with sweet chilli sauce",         5.50, "Snacks",  "🥟"));
+        items.add(new MenuItem(10, "Latte",                "Double shot espresso with steamed milk",             4.50, "Drinks",  "☕"));
+        items.add(new MenuItem(11, "Smoothie",             "Mixed berry, banana, yoghurt blend",                 5.50, "Drinks",  "🥤"));
+        items.add(new MenuItem(12, "Water Bottle",         "500ml chilled mineral water",                        2.00, "Drinks",  "💧"));
+        items.add(new MenuItem(13, "Chocolate Muffin",     "Rich double chocolate muffin",                       3.50, "Desserts","🧁"));
+        items.add(new MenuItem(14, "Fruit Cup",            "Seasonal fresh fruit medley",                        4.00, "Desserts","🍓"));
         return items;
     }
 }

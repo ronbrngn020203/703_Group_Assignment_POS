@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ais_red">#C0392B</color>
-    <color name="ais_red_bg">#FDF0EE</color>
-    <color name="ais_red_dark">#96281B</color>
-    <color name="ais_red_icon_bg">#FADADD</color>
-    <color name="ais_red_light">#E8A598</color>
+    <color name="ais_red">#C9A84C</color>
+    <color name="ais_red_bg">#FFF8E7</color>
+    <color name="ais_red_dark">#A8872E</color>
+    <color name="ais_red_icon_bg">#FFF8E7</color>
+    <color name="ais_red_light">#E8D5A3</color>
     <color name="bg_light">#FAF8F7</color>
     <color name="card_white">#FFFFFF</color>
     <color name="divider">#EEEEEE</color>
     <color name="green_light">#E8F5E9</color>
     <color name="green_success">#27AE60</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
     <color name="off_white">#F5F0EE</color>
     <color name="shadow">#1A000000</color>
-    <color name="star_gold">#F39C12</color>
-    <color name="status_bar">#A93226</color>
+    <color name="star_gold">#C9A84C</color>
+    <color name="status_bar">#FFFFFF</color>
     <color name="text_hint">#999999</color>
     <color name="text_primary">#1A1A1A</color>
     <color name="text_secondary">#666666</color>
@@ -33,32 +34,33 @@
     <string name="add_to_cart">Add</string>
     <string name="ais_address">28A Linwood Avenue, Mount Albert, Auckland 1025</string>
     <string name="ais_email">cafeteria@ais.ac.nz</string>
-    <string name="ais_phone">+64 9 815 3589</string>
+    <string name="ais_phone">+64 210 101 2423</string>
     <string name="ais_website">www.ais.ac.nz</string>
     <string name="all_categories">All</string>
     <string name="amount_due">AMOUNT DUE</string>
-    <string name="app_name">AIS Cafeteria</string>
+    <string name="app_name">Manna Cafe &amp; Catering</string>
     <string name="app_tagline">Auckland Institute of Studies</string>
-    <string name="app_version">AIS Cafeteria POS v1.0 · SOFT708</string>
+    <string name="app_version">Manna Cafe &amp; Catering POS v1.0 · SOFT708</string>
     <string name="browse_menu">Browse Menu</string>
-    <string name="cafeteria_open">OPEN · Closes 4:00 PM</string>
+    <string name="cafeteria_open">OPEN · Closes 2:30 PM</string>
     <string name="card_number_hint">Card Number</string>
     <string name="cart_empty">Your cart is empty</string>
     <string name="cart_title">Your Cart</string>
     <string name="chefs_pick">Chef\'s Pick</string>
     <string name="confirm_payment">Confirm Payment</string>
     <string name="contact">Contact</string>
-    <string name="contact_title">About &amp; Contact</string>
+    <string name="contact_title">Contact &amp; Hours</string>
     <string name="cvv_hint">CVV</string>
-    <string name="dashboard_title">AIS Cafeteria</string>
+    <string name="dashboard_title">Manna Cafe &amp; Catering</string>
     <string name="dial">Dial</string>
     <string name="email">Email</string>
     <string name="email_receipt">Email Receipt</string>
     <string name="expiry_hint">MM/YY</string>
     <string name="find_us">Find Us</string>
+    <string name="firebase_database_url" translatable="false">https://ais-cafeteria-pos-default-rtdb.firebaseio.com</string>
     <string name="forgot_password">Forgot password? Contact IT Support</string>
     <string name="gallery">Gallery</string>
-    <string name="gallery_subtitle">AIS Cafeteria — Auckland</string>
+    <string name="gallery_subtitle">Manna Cafe &amp; Catering — Auckland</string>
     <string name="gallery_title">Gallery</string>
     <string name="gcm_defaultSenderId" translatable="false">93166560156</string>
     <string name="good_morning">Good Morning, Guest!</string>
@@ -68,9 +70,9 @@
     <string name="google_storage_bucket" translatable="false">ais-cafeteria-pos.firebasestorage.app</string>
     <string name="gst">GST (15%)</string>
     <string name="history_title">Order History</string>
-    <string name="hours_saturday">Saturday: 8:00 AM – 2:00 PM</string>
-    <string name="hours_sunday">Sunday: Closed</string>
-    <string name="hours_weekday">Mon – Fri: 7:30 AM – 4:00 PM</string>
+    <string name="hours_saturday">Saturday: 9:00 AM – 3:00 PM</string>
+    <string name="hours_sunday">Sunday: 9:00 AM – 3:00 PM</string>
+    <string name="hours_weekday">Mon – Fri: 8:00 AM – 2:30 PM</string>
     <string name="incl_gst">incl. 15% GST</string>
     <string name="login_button">Sign In</string>
     <string name="login_title">Staff Login</string>
@@ -158,7 +160,8 @@
     </style>
     <style name="Theme.AISCafeteria.Splash" parent="Theme.AISCafeteria">
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@color/ais_red</item>
-        <item name="android:statusBarColor">@color/ais_red</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowSplashScreenBackground">@color/white</item>
     </style>
 </resources>

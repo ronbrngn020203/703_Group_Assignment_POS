@@ -10,6 +10,7 @@ color card_white
 color divider
 color green_light
 color green_success
+color ic_launcher_background
 color nav_color_selector
 color off_white
 color shadow
@@ -44,6 +45,8 @@ drawable bg_input
 drawable bg_red_gradient
 drawable bg_status_pill
 drawable bg_success_pill
+drawable circle_gold_faded
+drawable dot_gold
 drawable ic_ais_logo
 drawable ic_ais_logo_splash
 drawable ic_back
@@ -56,11 +59,13 @@ drawable ic_menu_food
 drawable ic_orders
 drawable ic_phone
 drawable ic_web
+drawable manna_logo
 id appTitleText
 id bottomNav
 id btnAdd
 id btnBack
 id btnBrowseMenu
+id btnCalendar
 id btnCart
 id btnCheckout
 id btnConfirmPayment
@@ -127,7 +132,6 @@ id fab
 id ivLogo
 id ivPopupImage
 id ivThumbnail
-id logoContainer
 id mapFragment
 id navDrawer
 id nav_dashboard
@@ -144,13 +148,11 @@ id rvOrderHistory
 id rvReceiptItems
 id statusPill
 id taglineText
-id tvAisName
 id tvAmountDue
 id tvCartBadge
 id tvClose
 id tvDate
 id tvDesc
-id tvDrawerAvatar
 id tvDrawerName
 id tvEditTitle
 id tvEmoji
@@ -191,6 +193,7 @@ layout item_menu
 layout item_order_history
 menu bottom_nav_menu
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 string add_to_cart
 string ais_address
@@ -218,6 +221,7 @@ string email
 string email_receipt
 string expiry_hint
 string find_us
+string firebase_database_url
 string forgot_password
 string gallery
 string gallery_subtitle

@@ -84,14 +84,20 @@ public class PaymentActivity extends AppCompatActivity {
             case "Card":
                 rbCard.setChecked(true);
                 cardDetailsSection.setVisibility(View.VISIBLE);
+                // Update button for card payment
+                btnConfirmPayment.setText("✓  Confirm Payment");
                 break;
             case "Cash":
                 rbCash.setChecked(true);
                 cardDetailsSection.setVisibility(View.GONE);
+                // Update button to show cash instruction
+                btnConfirmPayment.setText("📍  Place Order — Pay at Counter");
                 break;
             case "Wallet":
                 rbWallet.setChecked(true);
                 cardDetailsSection.setVisibility(View.GONE);
+                // Update button for wallet payment
+                btnConfirmPayment.setText("✓  Confirm Payment");
                 break;
         }
     }
@@ -117,10 +123,25 @@ public class PaymentActivity extends AppCompatActivity {
             }
         }
 
+        // ── Set status based on payment method ───────────────
+        String paymentStatus;
+        String toastMessage;
+
+        if (selectedMethod.equals("Cash")) {
+            paymentStatus = "Pending";
+            toastMessage  = "Order placed! Please pay at the counter.";
+        } else {
+            paymentStatus = "Completed";
+            toastMessage  = "Payment successful!";
+        }
+
+        // Pass status to CartManager and Receipt
         CartManager.getInstance().placeOrder(selectedMethod);
-        Toast.makeText(this, "Payment successful!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, toastMessage, Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(this, ReceiptActivity.class);
+        intent.putExtra("payment_status", paymentStatus);
+        intent.putExtra("payment_method", selectedMethod);
         finishAffinity();
         startActivity(new Intent(this, MainActivity.class));
         startActivity(intent);

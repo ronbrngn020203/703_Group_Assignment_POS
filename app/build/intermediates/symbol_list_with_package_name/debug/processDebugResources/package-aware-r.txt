@@ -1468,6 +1468,7 @@ color green_light
 color green_success
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color ic_launcher_background
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
 color m3_assist_chip_stroke_color
@@ -3062,6 +3063,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable circle_gold_faded
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -3086,6 +3088,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable dot_gold
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_ais_logo
@@ -3129,6 +3132,7 @@ drawable m3_tabs_background
 drawable m3_tabs_line_indicator
 drawable m3_tabs_rounded_line_indicator
 drawable m3_tabs_transparent_background
+drawable manna_logo
 drawable material_cursor_drawable
 drawable material_ic_calendar_black_24dp
 drawable material_ic_clear_black_24dp
@@ -3298,6 +3302,7 @@ id bounceStart
 id btnAdd
 id btnBack
 id btnBrowseMenu
+id btnCalendar
 id btnCart
 id btnCheckout
 id btnConfirmPayment
@@ -3512,7 +3517,6 @@ id line3
 id linear
 id listMode
 id list_item
-id logoContainer
 id m3_side_sheet
 id mapFragment
 id marquee
@@ -3765,13 +3769,11 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
-id tvAisName
 id tvAmountDue
 id tvCartBadge
 id tvClose
 id tvDate
 id tvDesc
-id tvDrawerAvatar
 id tvDrawerName
 id tvEditTitle
 id tvEmoji
@@ -4030,6 +4032,7 @@ layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 menu bottom_nav_menu
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 raw firebase_common_keep
@@ -4128,6 +4131,7 @@ string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string find_us
+string firebase_database_url
 string forgot_password
 string gallery
 string gallery_subtitle

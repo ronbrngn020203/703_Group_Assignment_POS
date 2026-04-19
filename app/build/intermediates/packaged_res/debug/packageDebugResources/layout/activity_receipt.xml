@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_red_gradient"
+        android:background="#1A1A1A"
         android:orientation="vertical"
         android:padding="24dp"
         android:gravity="center">
@@ -35,12 +35,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="#1022"
-            android:textColor="@color/star_gold"
+            android:textColor="#C9A84C"
             android:textSize="15sp"
             android:textStyle="bold"
             android:layout_marginTop="4dp" />
 
     </LinearLayout>
+
+    <!-- Gold divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#C9A84C"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -87,7 +93,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/divider"
+                        android:background="#C9A84C"
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="8dp" />
 
@@ -136,7 +142,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/divider"
+                        android:background="#C9A84C"
                         android:layout_marginBottom="8dp" />
 
                     <LinearLayout
@@ -157,7 +163,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="$0.00"
-                            android:textColor="@color/ais_red"
+                            android:textColor="#C9A84C"
                             android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -186,7 +192,7 @@
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:text="📧 Email Receipt"
-                    android:textColor="@color/ais_red"
+                    android:textColor="#C9A84C"
                     android:textSize="13sp"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -199,7 +205,7 @@
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:text="🖨️ Print Receipt"
-                    android:textColor="@color/ais_red"
+                    android:textColor="#C9A84C"
                     android:textSize="13sp"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -218,6 +224,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:gravity="center"
+                android:backgroundTint="#C9A84C"
                 android:background="@drawable/bg_btn_red_rounded" />
 
         </LinearLayout>

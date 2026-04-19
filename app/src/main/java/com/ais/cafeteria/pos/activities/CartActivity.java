@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,7 +21,6 @@ import com.ais.cafeteria.pos.utils.CartManager;
 import java.util.List;
 import java.util.Locale;
 
-
 public class CartActivity extends AppCompatActivity {
 
     private RecyclerView rvCartItems;
@@ -29,24 +29,24 @@ public class CartActivity extends AppCompatActivity {
     private Button btnBrowseMenu, btnCheckout;
     private TextView tvSubtotal, tvGst, tvTotal;
     private ImageView btnBack;
+    private EditText etOrderNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        // Find views
-        rvCartItems = findViewById(R.id.rvCartItems);
-        emptyState = findViewById(R.id.emptyState);
+        rvCartItems     = findViewById(R.id.rvCartItems);
+        emptyState      = findViewById(R.id.emptyState);
         checkoutSection = findViewById(R.id.checkoutSection);
-        btnBrowseMenu = findViewById(R.id.btnBrowseMenu);
-        btnCheckout = findViewById(R.id.btnCheckout);
-        tvSubtotal = findViewById(R.id.tvSubtotal);
-        tvGst = findViewById(R.id.tvGst);
-        tvTotal = findViewById(R.id.tvTotal);
-        btnBack = findViewById(R.id.btnBack);
+        btnBrowseMenu   = findViewById(R.id.btnBrowseMenu);
+        btnCheckout     = findViewById(R.id.btnCheckout);
+        tvSubtotal      = findViewById(R.id.tvSubtotal);
+        tvGst           = findViewById(R.id.tvGst);
+        tvTotal         = findViewById(R.id.tvTotal);
+        btnBack         = findViewById(R.id.btnBack);
+        etOrderNote     = findViewById(R.id.etOrderNote);
 
-        // Setup RecyclerView
         List<CartItem> cartItems = CartManager.getInstance().getCartItems();
         adapter = new CartAdapter(cartItems, new CartAdapter.CartListener() {
             @Override
@@ -71,14 +71,20 @@ public class CartActivity extends AppCompatActivity {
         rvCartItems.setLayoutManager(new LinearLayoutManager(this));
         rvCartItems.setAdapter(adapter);
 
-        // Events
         btnBack.setOnClickListener(v -> onBackPressed());
+
         btnBrowseMenu.setOnClickListener(v -> {
             startActivity(new Intent(this, MenuActivity.class));
             finish();
         });
-        btnCheckout.setOnClickListener(v ->
-                startActivity(new Intent(this, PaymentActivity.class)));
+
+        // ✅ Save note to CartManager before going to payment
+        btnCheckout.setOnClickListener(v -> {
+            String note = etOrderNote != null ?
+                    etOrderNote.getText().toString().trim() : "";
+            CartManager.getInstance().setOrderNote(note);
+            startActivity(new Intent(this, PaymentActivity.class));
+        });
 
         refreshCart();
     }
@@ -103,8 +109,8 @@ public class CartActivity extends AppCompatActivity {
             rvCartItems.setVisibility(View.VISIBLE);
 
             double subtotal = CartManager.getInstance().getSubtotal();
-            double gst = CartManager.getInstance().getGst();
-            double total = CartManager.getInstance().getTotal();
+            double gst      = CartManager.getInstance().getGst();
+            double total    = CartManager.getInstance().getTotal();
 
             tvSubtotal.setText(String.format(Locale.getDefault(), "$%.2f", subtotal));
             tvGst.setText(String.format(Locale.getDefault(), "$%.2f", gst));

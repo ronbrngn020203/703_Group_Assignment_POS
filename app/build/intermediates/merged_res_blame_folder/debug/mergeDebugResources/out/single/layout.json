@@ -1,70 +1,74 @@
 [
     {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/item_order_history.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/item_order_history.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\activity_menu.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\activity_menu.xml"
     },
     {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/activity_receipt.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_receipt.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/activity_contact.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_contact.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\activity_login.xml"
     },
     {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/activity_menu.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_menu.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\activity_order_history.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\activity_order_history.xml"
     },
     {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/item_cart.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/item_cart.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\dialog_gallery_item.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\dialog_gallery_item.xml"
     },
     {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/activity_gallery.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_gallery.xml"
-    },
-    {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/activity_cart.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_cart.xml"
-    },
-    {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/activity_main.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_main.xml"
-    },
-    {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/activity_edit_menu_item.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_edit_menu_item.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\activity_edit_menu_item.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\activity_edit_menu_item.xml"
     },
     {
         "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/activity_find_us.xml",
         "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_find_us.xml"
     },
     {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/item_gallery.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/item_gallery.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\activity_receipt.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\activity_receipt.xml"
     },
     {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/activity_login.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_login.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\item_menu.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\item_menu.xml"
     },
     {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/activity_splash.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_splash.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\activity_payment.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\activity_payment.xml"
     },
     {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/item_menu.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/item_menu.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\item_order_history.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\item_order_history.xml"
     },
     {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/activity_order_history.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_order_history.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\activity_splash.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\activity_splash.xml"
     },
     {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/activity_payment.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/activity_payment.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\activity_find_us.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\activity_find_us.xml"
     },
     {
-        "merged": "com.ais.cafeteria.pos.app-mergeDebugResources-37:/layout/dialog_gallery_item.xml",
-        "source": "com.ais.cafeteria.pos.app-main-40:/layout/dialog_gallery_item.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\activity_gallery.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\activity_gallery.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\activity_cart.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\activity_cart.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\item_gallery.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\item_gallery.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\item_cart.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\item_cart.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-mergeDebugResources-37:\\layout\\activity_contact.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.6\\com.ais.cafeteria.pos.app-main-40:\\layout\\activity_contact.xml"
     }
 ]

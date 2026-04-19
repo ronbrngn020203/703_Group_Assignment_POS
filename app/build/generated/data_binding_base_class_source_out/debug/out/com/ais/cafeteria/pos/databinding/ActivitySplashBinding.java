@@ -49,13 +49,7 @@ public final class ActivitySplashBinding implements ViewBinding {
   public final ImageView ivLogo;
 
   @NonNull
-  public final LinearLayout logoContainer;
-
-  @NonNull
   public final TextView taglineText;
-
-  @NonNull
-  public final TextView tvAisName;
 
   @NonNull
   public final TextView versionText;
@@ -63,9 +57,8 @@ public final class ActivitySplashBinding implements ViewBinding {
   private ActivitySplashBinding(@NonNull ConstraintLayout rootView, @NonNull TextView appTitleText,
       @NonNull View circleBottom, @NonNull View circleTop, @NonNull View dividerLine,
       @NonNull View dot1, @NonNull View dot2, @NonNull View dot3,
-      @NonNull LinearLayout dotsContainer, @NonNull ImageView ivLogo,
-      @NonNull LinearLayout logoContainer, @NonNull TextView taglineText,
-      @NonNull TextView tvAisName, @NonNull TextView versionText) {
+      @NonNull LinearLayout dotsContainer, @NonNull ImageView ivLogo, @NonNull TextView taglineText,
+      @NonNull TextView versionText) {
     this.rootView = rootView;
     this.appTitleText = appTitleText;
     this.circleBottom = circleBottom;
@@ -76,9 +69,7 @@ public final class ActivitySplashBinding implements ViewBinding {
     this.dot3 = dot3;
     this.dotsContainer = dotsContainer;
     this.ivLogo = ivLogo;
-    this.logoContainer = logoContainer;
     this.taglineText = taglineText;
-    this.tvAisName = tvAisName;
     this.versionText = versionText;
   }
 
@@ -163,21 +154,9 @@ public final class ActivitySplashBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.logoContainer;
-      LinearLayout logoContainer = ViewBindings.findChildViewById(rootView, id);
-      if (logoContainer == null) {
-        break missingId;
-      }
-
       id = R.id.taglineText;
       TextView taglineText = ViewBindings.findChildViewById(rootView, id);
       if (taglineText == null) {
-        break missingId;
-      }
-
-      id = R.id.tvAisName;
-      TextView tvAisName = ViewBindings.findChildViewById(rootView, id);
-      if (tvAisName == null) {
         break missingId;
       }
 
@@ -188,8 +167,8 @@ public final class ActivitySplashBinding implements ViewBinding {
       }
 
       return new ActivitySplashBinding((ConstraintLayout) rootView, appTitleText, circleBottom,
-          circleTop, dividerLine, dot1, dot2, dot3, dotsContainer, ivLogo, logoContainer,
-          taglineText, tvAisName, versionText);
+          circleTop, dividerLine, dot1, dot2, dot3, dotsContainer, ivLogo, taglineText,
+          versionText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
