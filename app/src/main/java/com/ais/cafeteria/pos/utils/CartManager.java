@@ -24,7 +24,7 @@ public class CartManager {
     private int orderCounter = 1021;
     private Order lastOrder;
     private SharedPreferences prefs;
-    private String pendingNote = ""; // ✅ stores note from cart
+    private String pendingNote = "";
 
     private static final String PREF_NAME   = "AIS_CART_PREFS";
     private static final String KEY_HISTORY = "order_history";
@@ -45,7 +45,7 @@ public class CartManager {
         loadOrderHistory();
     }
 
-    // ✅ Set note from CartActivity
+    // ✅ Set and get note
     public void setOrderNote(String note) {
         this.pendingNote = note != null ? note : "";
     }
@@ -165,7 +165,7 @@ public class CartManager {
 
     public void clearCart() {
         cartItems.clear();
-        pendingNote = ""; // ✅ clear note after order
+        pendingNote = "";
     }
 
     public boolean isInCart(int menuItemId) {
@@ -202,14 +202,14 @@ public class CartManager {
     // ── Order Operations ──────────────────────────────────────
 
     public Order placeOrder(String paymentMethod) {
-        return placeOrder(paymentMethod, pendingNote); // ✅ use pending note
+        return placeOrder(paymentMethod, pendingNote);
     }
 
     public Order placeOrder(String paymentMethod, String note) {
         orderCounter++;
         String orderId = "#" + orderCounter;
         String date = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date());
-        Order order = new Order(orderId, date, new ArrayList<>(cartItems), getTotal(), paymentMethod);
+        Order order = new Order(orderId, date, new ArrayList<>(cartItems), getSubtotal(), paymentMethod);
         order.setNote(note);
         orderHistory.add(0, order);
         lastOrder = order;
